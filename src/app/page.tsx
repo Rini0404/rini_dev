@@ -66,13 +66,19 @@ const Home: React.FC = () => {
 
         <div className="flex justify-center space-x-4">
           <MoovingButton
-            text="Projects"
+            text="About Me"
+            link="/aboutMe"
           />
-          
           <MoovingButton
-            text="Contact Me"
+            text="Projects"
+            link="/projects"
           />
-          
+
+          <MoovingButton
+            text="Blogs"
+            link="/blogs"
+          />
+
         </div>
       </div>
     </div>
