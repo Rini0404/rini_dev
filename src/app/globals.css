@@ -3,7 +3,14 @@
 @tailwind utilities;
 
 body {
-  background: linear-gradient(180deg, #0055ff 0%, rgb(0, 153, 255) 100%);
+  background: rgb(40, 42, 48)
+}
+
+.blogs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
 }
 
 nav {
@@ -90,4 +97,10 @@ li {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.box {
+  width: 80%;
+  height: 200px;
+  background: #fff;
 }
