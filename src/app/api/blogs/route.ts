@@ -1,20 +1,22 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import prisma from '@/prisma/client';
+import { BlogsProps } from "../../blogs/blog-types";
 
-import { User } from "@/blogs";
+// ... other imports ...
 
-// prisma get user
-
-import prisma from "../../../../prisma/client";
-
-export default async function GET() {
-
-  const user = await prisma.user.findUnique({
-    where: {
-      id: 1,
-    },
-  });
-
-  return NextResponse.json(user);
-
-
+export default async function GET_BLOGS(): Promise<NextResponse> {
+  try {
+    const blogs: BlogsProps = await prisma.blogs.findMany();
+    return new NextResponse(JSON.stringify(blogs), {
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+  } catch (error: unknown) {
+    return new NextResponse(JSON.stringify({ error: (error as Error).message }), {
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+  } 
 }

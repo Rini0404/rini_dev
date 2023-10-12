@@ -1,25 +1,29 @@
-'use client'
-import React from 'react';
-import { motion } from "framer-motion";
+import React from "react";
+import GET_BLOGS from "../api/blogs/route";
+import { BlogsArray } from "./blog-types";
+import Blogs from "./client-blog";
 
-const Blogs = () => {
+const getAllBlogs = async () => {
+  const response = await GET_BLOGS();
+  const data = await response.json();
+  return data;
+};
+
+type BlogsProps = {
+  data: BlogsArray;
+};
+
+const BlogsPage: React.FC<BlogsProps> = async ({ data }) => {
+  const blogs = await getAllBlogs();
+
+
   return (
-
-    <div className = " justify-center items-center flex flex-col pt-4">
-
-      <motion.div
-        className="box"
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{
-          duration: 1,
-          delay: 0.5,
-          ease: [0, 0.71, 0.2, 1.01]
-        }}
+    <div>
+      <Blogs
+        data={blogs}
       />
-  
     </div>
   );
 }
 
-export default Blogs;
+export default BlogsPage
