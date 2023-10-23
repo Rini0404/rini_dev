@@ -100,7 +100,6 @@ li {
 }
 
 .box {
-  width: 80%;
-  height: 200px;
-  background: #fff;
+  min-height: 250px; /* set to the specific size you want */
+  height: auto; /* allows the box to grow with its content */
 }

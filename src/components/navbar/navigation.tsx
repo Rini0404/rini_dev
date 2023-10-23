@@ -11,6 +11,10 @@ const variants = {
   }
 };
 
+type NavigationProps = {
+  closeWhenClicked: () => void;
+}
+
 const itemIds = [0, 1, 2, 3];
 
 const links = [ "/blogs", "/projects", "/aboutMe", "/" ];
@@ -19,10 +23,12 @@ const names = [ "Blogs", "Projects", "About Me", "Home" ];
 
 const emoji = [ "📝", "📁", "👨‍💻", "🏠" ]
 
-export const Navigation = () => (
+export const Navigation = ({ closeWhenClicked }: NavigationProps) => (
   <motion.ul variants={variants}>
     {itemIds.map(i => (
-      <MenuItem i={i} key={i} links = {links[i]} names = {names[i]} emoji={emoji[i]} />
+      <MenuItem i={i} key={i} 
+        closeWhenClicked = {closeWhenClicked}
+      links = {links[i]} names = {names[i]} emoji={emoji[i]} />
     ))}
   </motion.ul>
 );

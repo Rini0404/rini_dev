@@ -24,6 +24,7 @@ interface MenuItemProps {
   links: string;
   names: string;
   emoji: string;
+  closeWhenClicked: () => void;
 }
 
 export const MenuItem: React.FC<MenuItemProps> = ({
@@ -31,6 +32,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   names,
   links,
   emoji,
+  closeWhenClicked,
 }) => {
   return (
     <motion.li
@@ -40,14 +42,14 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     >
       <div className="icon-placeholder">
         <Link href={links} legacyBehavior>
-          <span role="img" aria-label="emoji">
+          <span role="img" aria-label="emoji" onClick={closeWhenClicked}>
             {emoji}
           </span>
         </Link>
       </div>
       <div className="text-placeholder">
         <Link href={links} legacyBehavior>
-          {names}
+          <a onClick={closeWhenClicked}>{names}</a>
         </Link>
       </div>
     </motion.li>

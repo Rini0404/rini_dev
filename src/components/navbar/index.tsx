@@ -40,13 +40,16 @@ export const Navbar = () => {
       transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
     }}>
       <motion.nav
+        style={{ zIndex: 10 }}
         initial={false}
         animate={isOpen ? "open" : "closed"}
         custom={height}
         ref={containerRef}
       >
         <motion.div className="background" variants={sidebar} />
-        <Navigation />
+        <Navigation 
+          closeWhenClicked = {() => toggleOpen()}
+        />
         <MenuToggle toggle={() => toggleOpen()} />
       </motion.nav>
     </div>

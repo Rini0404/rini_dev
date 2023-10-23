@@ -2,7 +2,7 @@
 import React, { useState, useRef, MutableRefObject } from "react";
 import { motion, useInView  } from "framer-motion";
 import useMapboxMap from "../hooks/useMapboxMap";
-import { MoovingButton } from "@/components/buttons/moovingButton";
+import { MoovingButton } from "../components/buttons/moovingButton";
 
 const Home: React.FC = () => {
   const [showMap, setShowMap] = useState(false);
