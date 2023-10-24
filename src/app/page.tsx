@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useRef, MutableRefObject } from "react";
-import { motion, useInView  } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import useMapboxMap from "../hooks/useMapboxMap";
 import { MoovingButton } from "../components/buttons/moovingButton";
+import Typewriter from "typewriter-effect";
 
 const Home: React.FC = () => {
   const [showMap, setShowMap] = useState(false);
@@ -22,15 +23,26 @@ const Home: React.FC = () => {
   });
 
   return (
-    <div ref = {refMain} className="flex items-center justify-center min-h-screen bg-gray-800">
-      <div className="text-white p-8 text-center space-y-4 relative"
-      style={{
-        transform: isInView ? "none" : "translateX(-200px)",
-        opacity: isInView ? 1 : 0,
-        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-      }}
+    <div
+      ref={refMain}
+      className="flex items-center justify-center min-h-screen"
+    >
+      <div
+        className="text-white p-8 text-center space-y-4 relative"
+        style={{
+          transform: isInView ? "none" : "translateX(-200px)",
+          opacity: isInView ? 1 : 0,
+          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+        }}
       >
-        <h1 className="text-4xl font-bold mb-4">Hello, I am Rini</h1>
+        <Typewriter
+          onInit={(typewriter) => {
+            typewriter
+              .typeString("Hello, my name is Rini!")
+              // .pauseFor(90000)
+              .start();
+          }}
+        />
         <p className="text-lg mb-4">
           I am a Full Stack Web and Mobile Developer based in{" "}
           <span
@@ -74,20 +86,10 @@ const Home: React.FC = () => {
         )}
 
         <div className="flex justify-center space-x-4">
-          <MoovingButton
-            text="About Me"
-            link="/aboutMe"
-          />
-          <MoovingButton
-            text="Projects"
-            link="/projects"
-          />
+          <MoovingButton text="About Me" link="/aboutMe" />
+          <MoovingButton text="Projects" link="/projects" />
 
-          <MoovingButton
-            text="Blogs"
-            link="/blogs"
-          />
-
+          <MoovingButton text="Blogs" link="/blogs" />
         </div>
       </div>
     </div>

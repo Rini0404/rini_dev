@@ -27,9 +27,9 @@ const Blogs: React.FC<BlogsProps> = ({ data }) => {
               src={blog.thumbnail}
               alt={blog.title}
               style={{
-                borderWidth: "1px",
-                borderColor: "white",
-                boxShadow: "0 4px 10px white"
+                borderWidth: "0.5px",
+                borderColor: "#B0B3B8",
+                boxShadow: "0 4px 10px rgba(0, 255, 170, 0.637)",
               }}
               className="object-fit mx-auto"
             />
@@ -41,7 +41,7 @@ const Blogs: React.FC<BlogsProps> = ({ data }) => {
               href={blog.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl text-white"
+              className="text-xl text-color"
             >
               {blog.title}
             </a>
@@ -55,8 +55,7 @@ const Blogs: React.FC<BlogsProps> = ({ data }) => {
                 .map((tag, index) => (
                   <span
                     key={index}
-                    style={{ backgroundColor: "rgba(0, 255, 170, 0.637)" }}
-                    className="px-2 py-1 mr-2 mt-2 text-white rounded-full text-sm"
+                    className="px-2 py-1 mr-2 mt-2 text-color rounded-full text-sm bg-teal-400/10"
                   >
                     {tag.trim()}
                   </span>

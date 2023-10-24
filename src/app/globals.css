@@ -3,14 +3,21 @@
 @tailwind utilities;
 
 body {
-  background: rgb(40, 42, 48)
+  font-family: 'Roboto', sans-serif;
+  background: #18191A;
+  transition: background 0.2s ease; /* Optional: Smoothens the transition of the gradient */
 }
+
 
 .blogs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 50px;
+}
+
+.text-color{
+  color: #B0B3B8;
 }
 
 nav {
