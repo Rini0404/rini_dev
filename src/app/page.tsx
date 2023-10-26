@@ -44,14 +44,14 @@ const Home: React.FC = () => {
           }}
         />
         <p className="text-lg mb-4">
-          I am a Full Stack Web and Mobile Developer based in{" "}
-          <span
-            className="underline cursor-pointer"
+          I am a Full Stack Web and Mobile Developer based in{" "} {" "} {" "}{" "} {" "} {" "}
+          <button
+            className="cursor-pointer pulsate-effect"
             onMouseEnter={() => setShowMap(true)}
             onMouseLeave={() => setShowMap(false)}
           >
             Orlando, FL
-          </span>
+          </button>
         </p>
 
         {showMap && (
@@ -63,12 +63,12 @@ const Home: React.FC = () => {
               stiffness: 260,
               damping: 20,
             }}
-            className="absolute bg-white p-2 rounded-full overflow-hidden"
+            className="absolute bg-white p-2 rounded overflow-hidden"
             style={{
-              width: "200px",
-              height: "200px",
-              top: "-100%",
-              left: "90%",
+              width: "300px",
+              height: "300px",
+              top: "-130%",
+              left: "100%",
             }}
           >
             <div

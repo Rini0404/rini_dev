@@ -110,3 +110,28 @@ li {
   min-height: 250px; /* set to the specific size you want */
   height: auto; /* allows the box to grow with its content */
 }
+
+
+@keyframes pulsateButton {
+  0% {
+    box-shadow: 0 0 5px #0099FF;
+  }
+  50% {
+    box-shadow: 0 0 20px #5001ef, 0 0 30px #5001ef;
+  }
+  100% {
+    box-shadow: 0 0 5px #0099FF;
+  }
+}
+
+.pulsate-effect {
+  background-color: transparent;
+  color: white;
+  border: none; 
+  border-radius: 20px;
+  padding: 5px 10px; 
+  cursor: pointer;
+  animation: pulsateButton 1.5s infinite;
+  transition: background-color 0.3s ease;
+}
+
