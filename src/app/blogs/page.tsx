@@ -13,7 +13,7 @@ type BlogsProps = {
   data: BlogsArray;
 };
 
-const BlogsPage: React.FC<BlogsProps> = async ({ data }) => {
+const BlogsPage: React.FC<BlogsProps> = async () => {
   const blogs = await getAllBlogs();
 
 
