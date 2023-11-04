@@ -135,3 +135,45 @@ li {
   transition: background-color 0.3s ease;
 }
 
+/* Adjust your box classes as needed, sizes are just examples */
+.box-small, .box-large {
+  /* This will break out of the column layout on small screens */
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  /* Sizes for larger screens */
+  @media (min-width: 601px) {
+    width: 400px;
+  }
+}
+
+.box-large {
+  height: 450px; /* Your large height */
+}
+
+.box-small {
+  height: 400px; /* Your small height */
+}
+
+/* The projects container will create the column effect */
+.projects-container {
+  column-count: 2; /* This creates 2 columns */
+  column-gap: 20px; /* This sets the gap between columns */
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 25px; /* This adds padding on all sides */
+
+  @media (max-width: 600px) {
+    column-count: 1; /* On small screens, we only want 1 column */
+  }
+}
+
+/* You can use break-inside to prevent splitting your boxes across columns */
+.project-box {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 25px; /* This adds space between items */
+  background: white;
+  border: 1px solid #ccc;
+}
