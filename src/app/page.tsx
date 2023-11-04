@@ -63,7 +63,7 @@ const Home: React.FC = () => {
               stiffness: 260,
               damping: 20,
             }}
-            className="absolute bg-white p-2 rounded overflow-hidden"
+            className="absolute p-2 rounded overflow-hidden"
             style={{
               width: "300px",
               height: "300px",
@@ -85,10 +85,9 @@ const Home: React.FC = () => {
           </motion.div>
         )}
 
-        <div className="flex justify-center space-x-4">
+        <div className="flex justify-center space-x-10 space-between">
           <MoovingButton text="About Me" link="/aboutMe" />
           <MoovingButton text="Projects" link="/projects" />
-
           <MoovingButton text="Blogs" link="/blogs" />
         </div>
       </div>

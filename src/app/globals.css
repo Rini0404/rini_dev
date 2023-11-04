@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'MonoSpace', monospace;
   background: #18191A;
   transition: background 0.2s ease; /* Optional: Smoothens the transition of the gradient */
 }
