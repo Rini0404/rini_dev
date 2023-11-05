@@ -177,3 +177,19 @@ li {
   background: white;
   border: 1px solid #ccc;
 }
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px; /* This gives a pill-like shape */
+  background-color: #e0e0e0; /* Light gray background */
+  color: #333; /* Dark text color */
+  font-size: 0.875rem; /* Smaller font size */
+  line-height: 1.5;
+  white-space: nowrap;
+}
