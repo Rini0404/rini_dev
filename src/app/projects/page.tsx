@@ -1,15 +1,28 @@
 import React from 'react'
-import { ProjectProps, fakeProjects } from './project-types'
+import { ProjectProps } from './project-types'
 import ProjectsClient from './client-projects'
+import GET_PROJECTS from '../api/projects/route'
 
+const getAllProjects = async () => {
+  const response = await GET_PROJECTS()
+  const data = await response.json()
+  return data
+}
 
-const Projects: React.FC<ProjectProps> = () => {
+type ProjectsPropsData = {
+  data: ProjectProps
+}
 
+const Projects: React.FC<ProjectsPropsData> = async () => {
+
+  const projects = await getAllProjects()
+
+  console.log('console.log projects: ', projects)
 
   return (
     <div>
       <ProjectsClient
-        data={fakeProjects}
+        data={projects}
       />
     </div>
   )

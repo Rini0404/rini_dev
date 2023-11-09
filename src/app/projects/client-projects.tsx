@@ -2,11 +2,17 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ProjectProps } from "./project-types";
+import { ProjectProps, Project } from "./project-types";
 import Image from "next/image";
 import TagsPills from "@/src/components/pills";
+import ProjectModal from "@/src/components/projectModal";
 
-const ProjectsClient: React.FC<ProjectProps> = ({ data }) => {
+type ProjectsClientProps = {
+  data: ProjectProps;
+};
+
+// Your component definition:
+const ProjectsClient: React.FC<ProjectsClientProps> = ( { data } ) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   // This method shows the modal for the hovered element
   const handleMouseEnter = (index: number) => {
@@ -68,7 +74,14 @@ const ProjectsClient: React.FC<ProjectProps> = ({ data }) => {
     };
   };
 
-  console.log("Data: ", data)
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState<Project | null>(null);
+
+  // Toggle modal visibility and set the content for the modal
+  const handleCardClick = (project: Project) => {
+    setModalContent(project);
+    setShowModal(true);
+  };
 
   return (
     <div
@@ -79,6 +92,7 @@ const ProjectsClient: React.FC<ProjectProps> = ({ data }) => {
       {data.map((project, index) => (
         <motion.div
           key={project.id}
+          onClick={() => handleCardClick(project)}
           data-index={index}
           className={`border ${getBoxClass(index)} bg-slate-800`}
           initial={{ opacity: 0, y: -50 }}
@@ -92,13 +106,14 @@ const ProjectsClient: React.FC<ProjectProps> = ({ data }) => {
             className="flex bg-white"
             style={{ position: "relative", height: "100%", width: "100%" }}
           >
-            <Image
+            {/* <Image
               src={project.thumbnail}
-              alt={project.title}
+              alt={project.name}
               layout="fill"
               objectFit="cover"
               quality={50}
-            />
+            /> */}
+
             {hoverIndex === index && (
               <div
                 className="modal-content bg-slate-800"
@@ -121,10 +136,13 @@ const ProjectsClient: React.FC<ProjectProps> = ({ data }) => {
                     alignItems: "left",
                   }}
                 >
-                  <TagsPills tags={project.tags} className="flex flex-wrap p-3" />
+                  <TagsPills
+                    tags={project.tags.split(',')}
+                    className="flex flex-wrap p-3"
+                  />
 
                   <div className="flex flex-col gap-4 p-4">
-                    <p>{project.title}</p>
+                    <p>{project.name}</p>
 
                     <p>{project.shortDescription}</p>
                   </div>
@@ -134,6 +152,13 @@ const ProjectsClient: React.FC<ProjectProps> = ({ data }) => {
           </div>
         </motion.div>
       ))}
+
+      {showModal && modalContent && (
+        <ProjectModal
+          project={modalContent}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 };

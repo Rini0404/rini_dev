@@ -193,3 +193,25 @@ li {
   line-height: 1.5;
   white-space: nowrap;
 }
+
+
+
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1e293b; /* This is slate-800 with no opacity */
+  height: 50vh;
+  width: 100vw;
+  display: flex;
+  align-items: flex-end; /* Aligns the modal content at the bottom */
+  justify-content: center;
+}
+
+
+
+/* For animating modal enter */
+.modal-content.open {
+  transform: translateY(0%);
+}
