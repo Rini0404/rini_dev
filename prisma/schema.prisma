@@ -22,8 +22,9 @@ model Blogs {
 model Project {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(255)
-  thumbnail   String?  @db.VarChar(500) // Making it nullable if not all projects have thumbnails
+  thumbnail   String?  @db.VarChar(500)
   url         String   @db.VarChar(500)
   tags        String   @db.VarChar(500)
   description String   @db.Text
+  shortDesc   String   @db.VarChar(500)
 }

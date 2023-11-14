@@ -12,7 +12,7 @@ type ProjectsClientProps = {
 };
 
 // Your component definition:
-const ProjectsClient: React.FC<ProjectsClientProps> = ( { data } ) => {
+const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   // This method shows the modal for the hovered element
   const handleMouseEnter = (index: number) => {
@@ -106,21 +106,20 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ( { data } ) => {
             className="flex bg-white"
             style={{ position: "relative", height: "100%", width: "100%" }}
           >
-            {/* <Image
-              src={project.thumbnail}
-              alt={project.name}
-              layout="fill"
-              objectFit="cover"
-              quality={50}
-            /> */}
-
+              <Image
+                src={project.thumbnail}
+                alt={project.name}
+                layout="fill"
+                objectFit="cover"
+                quality={50}
+              />
             {hoverIndex === index && (
               <div
                 className="modal-content bg-slate-800"
                 style={{
                   width: "100%",
                   position: "absolute",
-                  height: "40%",
+                  height: "auto",
                   bottom: "0",
                   color: "#f1f1f1",
                 }}
@@ -137,14 +136,14 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ( { data } ) => {
                   }}
                 >
                   <TagsPills
-                    tags={project.tags.split(',')}
+                    tags={project.tags.split(",")}
                     className="flex flex-wrap p-3"
                   />
 
                   <div className="flex flex-col gap-4 p-4">
                     <p>{project.name}</p>
 
-                    <p>{project.shortDescription}</p>
+                    <p>{project.shortDesc}</p>
                   </div>
                 </div>
               </div>

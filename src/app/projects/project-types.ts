@@ -7,7 +7,7 @@ export type Project = {
   tags: string;
   thumbnail: string;
   url: string;
-  shortDescription?: string;
+  shortDesc?: string;
   description?: string;
 } 
 

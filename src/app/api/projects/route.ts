@@ -11,8 +11,6 @@ export default async function GET_PROJECTS(): Promise<NextResponse> {
     const projects = await prisma.project.findMany();
     const projectsWithThumbnail = projects.map((project) => ({
       ...project,
-      thumbnail: project.thumbnail ?? 'default-thumbnail.jpg',
-      tags: project.tags.split(','),
     })) as unknown as ProjectProps[];
 
     return new NextResponse(JSON.stringify(projectsWithThumbnail), {
