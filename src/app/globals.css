@@ -3,11 +3,10 @@
 @tailwind utilities;
 
 body {
-  font-family: 'MonoSpace', monospace;
-  background: #18191A;
+  font-family: "MonoSpace", monospace;
+  background: #18191a;
   transition: background 0.2s ease; /* Optional: Smoothens the transition of the gradient */
 }
-
 
 .blogs {
   display: flex;
@@ -16,8 +15,8 @@ body {
   margin-top: 50px;
 }
 
-.text-color{
-  color: #B0B3B8;
+.text-color {
+  color: #b0b3b8;
 }
 
 nav {
@@ -111,32 +110,32 @@ li {
   height: auto; /* allows the box to grow with its content */
 }
 
-
 @keyframes pulsateButton {
   0% {
-    box-shadow: 0 0 5px #0099FF;
+    box-shadow: 0 0 5px #0099ff;
   }
   50% {
     box-shadow: 0 0 20px #5001ef, 0 0 30px #5001ef;
   }
   100% {
-    box-shadow: 0 0 5px #0099FF;
+    box-shadow: 0 0 5px #0099ff;
   }
 }
 
 .pulsate-effect {
   background-color: transparent;
   color: white;
-  border: none; 
+  border: none;
   border-radius: 20px;
-  padding: 5px 10px; 
+  padding: 5px 10px;
   cursor: pointer;
   animation: pulsateButton 1.5s infinite;
   transition: background-color 0.3s ease;
 }
 
 /* Adjust your box classes as needed, sizes are just examples */
-.box-small, .box-large {
+.box-small,
+.box-large {
   /* This will break out of the column layout on small screens */
   @media (max-width: 600px) {
     width: 100%;
@@ -194,24 +193,63 @@ li {
   white-space: nowrap;
 }
 
-
-
 .modal-overlay {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #1e293b; /* This is slate-800 with no opacity */
+  background-color: #1e293b;
   height: 50vh;
   width: 100vw;
-  display: flex;
-  align-items: flex-end; /* Aligns the modal content at the bottom */
-  justify-content: center;
 }
-
-
 
 /* For animating modal enter */
 .modal-content.open {
   transform: translateY(0%);
+}
+
+/* ProjectModal.css */
+
+.modal-overlay-big {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1e293b;
+  height: 50vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-left: 50px;
+}
+
+.project-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-evenly;
+  width: 70%;
+  margin-left: 100px;
+}
+
+.project-title {
+  font-size: 2.5rem;
+}
+
+.project-description {
+  overflow: auto;
+  font-size: 1.2rem;
 }

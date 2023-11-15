@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import * as React from "react";
 import { useRef } from "react";
 import { motion, sync, useCycle, useInView } from "framer-motion";
@@ -12,8 +12,8 @@ const sidebar = {
     transition: {
       type: "spring",
       stiffness: 20,
-      restDelta: 2
-    }
+      restDelta: 2,
+    },
   }),
   closed: {
     clipPath: "circle(30px at 40px 40px)",
@@ -21,9 +21,9 @@ const sidebar = {
       delay: 0.5,
       type: "spring",
       stiffness: 400,
-      damping: 40
-    }
-  }
+      damping: 40,
+    },
+  },
 };
 
 export const Navbar = () => {
@@ -34,11 +34,16 @@ export const Navbar = () => {
   const isInView = useInView(navRef, { once: true });
 
   return (
-    <div ref = { navRef } style={{
-      transform: isInView ? "none" : "translateX(-200px)",
-      opacity: isInView ? 1 : 0,
-      transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-    }}>
+    <div
+      ref={navRef}
+      style={{
+        transform: isInView ? "none" : "translateX(-200px)",
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+        pointerEvents: isInView ? "all" : "none", // Add this line
+        // visibility: isInView ? "visible" : "hidden", // Alternatively, you can use this
+        zIndex: isInView ? 10 : -1, // Adjust z-index based on visibility
+      }}
+    >
       <motion.nav
         style={{ zIndex: 10 }}
         initial={false}
@@ -47,9 +52,11 @@ export const Navbar = () => {
         ref={containerRef}
       >
         <motion.div className="background" variants={sidebar} />
-        <Navigation 
-          closeWhenClicked = {() => toggleOpen()}
-        />
+        {isOpen && (
+          <>
+            <Navigation closeWhenClicked={() => toggleOpen()} />
+          </>
+        )}
         <MenuToggle toggle={() => toggleOpen()} />
       </motion.nav>
     </div>
