@@ -133,6 +133,26 @@ li {
   transition: background-color 0.3s ease;
 }
 
+@keyframes pulsateButtonBlue {
+  0% {
+    box-shadow: 10px 10px 10px rgba(0, 255, 170, 0.637)
+  }
+  50% {
+    box-shadow: 10px  10px 10px rgba(0, 255, 170, 0.637), 10px 10px 10px rgba(0, 255, 170, 0.637)
+  }
+  100% {
+    box-shadow: 10px  10px 10px rgba(0, 255, 170, 0.637);
+  }
+}
+
+
+.pulsate-box:hover{
+  /* background-color: transparent; */
+  cursor: pointer;
+  animation: pulsateButtonBlue 1.5s infinite;
+  transition: background-color 0.3s ease;
+}
+
 /* Adjust your box classes as needed, sizes are just examples */
 .box-small,
 .box-large {
@@ -209,6 +229,18 @@ li {
 }
 
 /* ProjectModal.css */
+.close-button {
+  position: absolute;
+  top: 10px; 
+  right: 50px; 
+  border: none;
+  width: 100px; 
+  height: 50px; 
+  border-radius: 100px;
+  color: white; 
+  font-size: 20px;
+  cursor: pointer;
+}
 
 .modal-overlay-big {
   position: fixed;
@@ -277,6 +309,8 @@ li {
   .modal-overlay-big {
     height: 100vh;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .details-container {

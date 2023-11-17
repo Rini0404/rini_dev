@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ProjectProps, Project } from "./project-types";
 import Image from "next/image";
 import TagsPills from "@/src/components/pills";
@@ -70,17 +70,18 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
     return {
       marginBottom: "0px", // Space below each box
       marginRight: index % 2 === 0 ? "20px" : "0", // Space on the right for the first box in the pair
-      marginTop: index % 4 === 2 ? "20px" : "20px", // If it's the second box in the row and a small box, add top margin
+      marginTop: index % 4 === 2 ? "20px" : "20px", // If it's the second box in the row and a small box, add top margin,
     };
   };
 
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState<Project | null>(null);
-
+  const [selectedId, setSelectedId] = useState<number | null>(null);
   // Toggle modal visibility and set the content for the modal
   const handleCardClick = (project: Project) => {
     setModalContent(project);
     setShowModal(true);
+    setSelectedId(project.id);
   };
 
   return (
@@ -94,25 +95,26 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
           key={project.id}
           onClick={() => handleCardClick(project)}
           data-index={index}
-          className={`border ${getBoxClass(index)} bg-slate-800`}
+          className={`border ${getBoxClass(index)} bg-slate-800 pulsate-box `}
           initial={{ opacity: 0, y: -50 }}
           animate={elementIsVisible[index] ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: index * 0.1 }}
           style={getBoxStyle(index)}
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
+          layoutId={`project-container-${project.id}`}
         >
           <div
-            className="flex bg-white"
+            className="flex"
             style={{ position: "relative", height: "100%", width: "100%" }}
           >
-              <Image
-                src={project.thumbnail}
-                alt={project.name}
-                layout="fill"
-                objectFit="cover"
-                quality={50}
-              />
+            <Image
+              src={project.thumbnail}
+              alt={project.name}
+              layout="fill"
+              objectFit="cover"
+              quality={50}
+            />
             {hoverIndex === index && (
               <div
                 className="modal-content bg-slate-800"
@@ -152,12 +154,18 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
         </motion.div>
       ))}
 
-      {showModal && modalContent && (
-        <ProjectModal
-          project={modalContent}
-          onClose={() => setShowModal(false)}
-        />
-      )}
+      <AnimatePresence>
+        {showModal && modalContent && (
+          <ProjectModal
+            key={modalContent.id} // Unique key for each project
+            layoutId="unique-layout-id"
+            project={modalContent}
+            onClose={async () => {
+              setShowModal(false);
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

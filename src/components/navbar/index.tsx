@@ -39,9 +39,9 @@ export const Navbar = () => {
       style={{
         transform: isInView ? "none" : "translateX(-200px)",
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-        pointerEvents: isInView ? "all" : "none", // Add this line
-        // visibility: isInView ? "visible" : "hidden", // Alternatively, you can use this
-        zIndex: isInView ? 10 : -1, // Adjust z-index based on visibility
+        pointerEvents: isInView ? "all" : "none", 
+        visibility: isInView ? "visible" : "hidden", 
+        zIndex: isInView ? 10 : -1, 
       }}
     >
       <motion.nav
@@ -52,11 +52,7 @@ export const Navbar = () => {
         ref={containerRef}
       >
         <motion.div className="background" variants={sidebar} />
-        {isOpen && (
-          <>
             <Navigation closeWhenClicked={() => toggleOpen()} />
-          </>
-        )}
         <MenuToggle toggle={() => toggleOpen()} />
       </motion.nav>
     </div>
