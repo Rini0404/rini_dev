@@ -11,9 +11,6 @@ const Home: React.FC = () => {
   const [showMap, setShowMap] = useState(false);
   const mapContainer: MutableRefObject<null | HTMLDivElement> = useRef(null);
 
-  const refMain = useRef(null);
-  const isInView = useInView(refMain, { once: true });
-
   useMapboxMap(mapContainer, showMap, {
     accessToken:
       "pk.eyJ1IjoicmluaTA0MDQiLCJhIjoiY2xtNTdvMDkxMnJxbjNjbW5reTM4N3d0eiJ9.KKdcGsnFDNd6Vx1uErTgPg",

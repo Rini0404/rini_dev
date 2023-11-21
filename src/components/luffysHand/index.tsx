@@ -1,12 +1,30 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
 
-const LuffyHand = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+type Position = {
+  x: number;
+  y: number;
+};
+
+const SnakeTrail: React.FC = () => {
+  const [trail, setTrail] = useState<Position[]>([]);
+  const trailLength = 10;
 
   useEffect(() => {
-    const handleMouseMove = (e: { clientX: any; clientY: any; }) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    setTrail(Array(trailLength).fill({ x: 0, y: 0 }));
+
+    let lastTime = Date.now();
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const now = Date.now();
+      if (now - lastTime > 50) { // Throttle time in milliseconds
+        setTrail((currentTrail) => [
+          { x: e.clientX, y: e.clientY },
+          ...currentTrail.slice(0, -1),
+        ]);
+        lastTime = now;
+      }
     };
 
     document.addEventListener('mousemove', handleMouseMove);
@@ -17,19 +35,26 @@ const LuffyHand = () => {
   }, []);
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={'/3f076edce34a97ab1feb21be380d405e7a1d313c_00.jpg'}
-      alt="Luffy's Hand"
-      style={{
-        position: 'fixed',
-        left: position.x,
-        top: position.y,
-        transform: 'translate(-50%, -50%)', // Adjust as needed
-        transition: 'left 0.1s, top 0.1s ease' // Smooth movement
-      }}
-    />
+    <>
+      {trail.map((segment, index) => (
+        <div
+          key={index}
+          style={{
+            position: 'fixed',
+            left: segment.x,
+            top: segment.y,
+            width: '10px',
+            height: '10px',
+            backgroundColor: 'red',
+            borderRadius: '50%',
+            transform: 'translate(-50%, -50%)',
+            transition: 'left 0.1s, top 0.1s ease',
+            opacity: (1 - index / trailLength)
+          }}
+        />
+      ))}
+    </>
   );
 };
 
-export default LuffyHand;
+export default SnakeTrail;
