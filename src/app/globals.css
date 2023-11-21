@@ -336,12 +336,6 @@ li {
   margin: 10px;
 }
 
-.tooling-small-boxes{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-}
 
 .icons {
   margin: 15px !important;
@@ -349,11 +343,14 @@ li {
   opacity: 0.93 !important;
   border: 2px solid rgba(0, 255, 170, 0.637) !important;
   vertical-align: middle !important;
-  text-align: center !important;
   border-radius: 5px !important;
   display: table !important;
   box-shadow: 4px 5px 4px 3px rgba(2, 133, 93, 0.137) !important;
   transition: all 0.4s ease 0s !important;
+  display: flex; /* Ensuring flex layout */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .icons:hover {
@@ -371,4 +368,26 @@ li {
   width: 50px !important;
   height: 50px !important;
   fill:#fff !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .icons {
+    width: 75px !important;
+    height: 75px !important;
+  }
+}
+
+.tooling-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content */
+}
+
+.typewriter-container {
+  /* Add styles for the typewriter text */
+  margin-bottom: 20px; /* Adjust space between typewriter and main box */
 }

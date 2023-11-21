@@ -20,7 +20,7 @@ const MainContent: React.FC<MainContentProps> = ({
 }) => {
   return (
     <div
-      className="text-white p-8 text-center space-y-4"
+      className="text-color p-8 text-center space-y-4"
       style={{
         transform: isInView ? "none" : "translateX(-200px)",
         opacity: isInView ? 1 : 0,
