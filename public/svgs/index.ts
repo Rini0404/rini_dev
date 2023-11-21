@@ -1,7 +1,7 @@
 
 
 export { default as Mysql } from './mysql.svg';
-export { default as React } from './react.svg';
+export { default as ReactSVG } from './react.svg';
 export { default as TypeScript } from './ts.svg';
 export { default as Node } from './node.svg';
 export { default as Express } from './express.svg';

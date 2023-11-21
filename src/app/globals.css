@@ -4,7 +4,7 @@
 
 body {
   font-family: "MonoSpace", monospace;
-  background: #18191a;
+  background: #000000;
   transition: background 0.2s ease; /* Optional: Smoothens the transition of the gradient */
 }
 
@@ -113,13 +113,13 @@ li {
 
 @keyframes pulsateButton {
   0% {
-    box-shadow: 0 0 5px #0099ff;
+    box-shadow: 0 0 5px rgba(0, 255, 170, 0.637)
   }
   50% {
-    box-shadow: 0 0 20px #5001ef, 0 0 30px #5001ef;
+    box-shadow: 0 0 20px rgba(0, 255, 170, 0.637), 0 0 30px rgba(0, 255, 170, 0.637)
   }
   100% {
-    box-shadow: 0 0 5px #0099ff;
+    box-shadow: 0 0 5px rgba(0, 255, 170, 0.637)fff;
   }
 }
 
@@ -136,18 +136,18 @@ li {
 
 @keyframes pulsateButtonBlue {
   0% {
-    box-shadow: 10px 10px 10px rgba(0, 255, 170, 0.637)
+    box-shadow: 10px 10px 10px rgba(0, 255, 170, 0.637);
   }
   50% {
-    box-shadow: 10px  10px 10px rgba(0, 255, 170, 0.637), 10px 10px 10px rgba(0, 255, 170, 0.637)
+    box-shadow: 10px 10px 10px rgba(0, 255, 170, 0.637),
+      10px 10px 10px rgba(0, 255, 170, 0.637);
   }
   100% {
-    box-shadow: 10px  10px 10px rgba(0, 255, 170, 0.637);
+    box-shadow: 10px 10px 10px rgba(0, 255, 170, 0.637);
   }
 }
 
-
-.pulsate-box:hover{
+.pulsate-box:hover {
   /* background-color: transparent; */
   cursor: pointer;
   animation: pulsateButtonBlue 1.5s infinite;
@@ -232,13 +232,13 @@ li {
 /* ProjectModal.css */
 .close-button {
   position: absolute;
-  top: 10px; 
-  right: 50px; 
+  top: 10px;
+  right: 50px;
   border: none;
-  width: 100px; 
-  height: 50px; 
+  width: 100px;
+  height: 50px;
   border-radius: 100px;
-  color: white; 
+  color: white;
   font-size: 20px;
   cursor: pointer;
 }
@@ -293,7 +293,8 @@ li {
     height: 70vh;
   }
 
-  .details-container, .image-container {
+  .details-container,
+  .image-container {
     margin-left: 1rem;
   }
 
@@ -327,16 +328,14 @@ li {
   }
 }
 
-
 /* tooling.css */
 
-.tooling-border{
+.tooling-border {
   border: 3px solid rgba(0, 255, 170, 0.637);
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
 }
-
 
 .icons {
   margin: 15px !important;
@@ -352,9 +351,11 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 50px !important;
+  height: 50px !important;
 }
 
-.icons:hover {
+.icons:hover, .mooving-buttons:hover {
   transform: scale(1.05);
   overflow: hidden;
   border: 2.2px solid rgba(197, 115, 230, 0.883);
@@ -363,12 +364,11 @@ li {
   transition: all 0.4s ease 0s !important;
 }
 
-
 .icon-fill {
   color: rgba(0, 255, 170, 0.637) !important;
   width: 50px !important;
   height: 50px !important;
-  fill:#fff !important;
+  fill: #fff !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -391,4 +391,15 @@ li {
 .typewriter-container {
   /* Add styles for the typewriter text */
   margin-bottom: 20px; /* Adjust space between typewriter and main box */
+}
+
+.mooving-buttons{ 
+  margin: 15px !important;
+  padding: 10px !important;
+  opacity: 0.93 !important;
+  border: 2px solid rgba(0, 255, 170, 0.637) !important;
+  border-radius: 5px !important;
+  display: table !important;
+  box-shadow: 4px 5px 4px 3px rgba(2, 133, 93, 0.137) !important;
+  transition: all 0.4s ease 0s !important;
 }

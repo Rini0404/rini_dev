@@ -25,6 +25,7 @@ export const MoovingButton: React.FC<MoovingButtonProps> = (props) => {
         position: "relative",
         display: "inline-block",
       }}
+      className= "mooving-buttons"
     >
       <Link href={props.link || "#"} passHref>
         <motion.a

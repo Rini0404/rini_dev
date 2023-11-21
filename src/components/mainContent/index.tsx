@@ -18,6 +18,7 @@ const MainContent: React.FC<MainContentProps> = ({
   mapContainer,
   isInView,
 }) => {
+  console.log('showMap: ', showMap)
   return (
     <div
       className="text-color p-8 text-center space-y-4"
@@ -27,59 +28,65 @@ const MainContent: React.FC<MainContentProps> = ({
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
       }}
     >
-      <Typewriter
-        onInit={(typewriter) => {
-          typewriter.typeString("Hello, my name is Rini!").start();
+      <div
+        style = {{
+          color: "#20C20E",
+          fontSize: "20px",
         }}
-      />
-      <p className="text-xlg mb-4">
-          I am a Full Stack Web and Mobile Developer based in{
-          " "} {" "} {" "}{" "} {" "} {" "}
-          <button
-          className="cursor-pointer pulsate-effect"
-          onMouseEnter={() => setShowMap(true)}
-          onMouseLeave={() => setShowMap(false)}
-        >
-          Orlando, FL
-        </button>
-      </p>
-
-      {showMap && (
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
+      >
+        <Typewriter
+          onInit={(typewriter) => {
+            typewriter.typeString("Hello, my name is Rini!").start();
           }}
-          className="absolute p-2 rounded overflow-hidden"
-          style={{
-            width: "300px",
-            height: "300px",
-            top: "-130%",
-            left: "100%",
-          }}
-        >
-          <div
-            ref={mapContainer}
-            className="rounded-full absolute"
-            style={{
-              width: "100%",
-              height: "100%",
-              left: "50%",
-              top: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
-          ></div>
-        </motion.div>
-      )}
-
-      <div className="flex justify-center space-x-10 space-between">
-        <MoovingButton text="About Me" link="/aboutMe" />
-        <MoovingButton text="Projects" link="/projects" />
-        <MoovingButton text="Blogs" link="/blogs" />
+        />
       </div>
+        <p className="text-xlg mb-4">
+          I am a Full Stack Web and Mobile Developer based in{" "}
+          <button
+            className="cursor-pointer pulsate-effect"
+            onMouseEnter={() => setShowMap(true)}
+            onMouseLeave={() => setShowMap(false)}
+          >
+            <span className="text-color">Orlando, FL</span>
+          </button>
+        </p>
+
+        {showMap && (
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+            }}
+            className="absolute p-2 rounded overflow-hidden"
+            style={{
+              width: "300px",
+              height: "300px",
+              top: "50%",
+              right: "19%",
+            }}
+          >
+            <div
+              ref={mapContainer}
+              className="rounded-full absolute"
+              style={{
+                width: "100%",
+                height: "100%",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            ></div>
+          </motion.div>
+        )}
+
+        <div className="flex justify-center space-x-10 space-between">
+          <MoovingButton text="About Me" link="/aboutMe" />
+          <MoovingButton text="Projects" link="/projects" />
+          <MoovingButton text="Blogs" link="/blogs" />
+        </div>
     </div>
   );
 };

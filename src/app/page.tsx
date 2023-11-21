@@ -1,9 +1,7 @@
 "use client";
-import React, { useState, useRef, MutableRefObject } from "react";
+import React, { useEffect, useState, useRef, MutableRefObject } from "react";
 import { motion, useInView } from "framer-motion";
 import useMapboxMap from "../hooks/useMapboxMap";
-import { MoovingButton } from "../components/buttons/moovingButton";
-import Typewriter from "typewriter-effect";
 import MainContent from "../components/mainContent";
 import { Tooling } from "../components/tooling";
 
@@ -25,19 +23,49 @@ const Home: React.FC = () => {
     hidden: { opacity: 0, translateY: 50 }
   };
 
+  const [animateMainContent, setAnimateMainContent] = useState(false);
+  const [animateTooling, setAnimateTooling] = useState(false);
+
   const refMainContent = useRef(null);
-  const isInViewMainContent = useInView(refMainContent, { once: true });
-
   const refTooling = useRef(null);
-  const isInViewTooling = useInView(refTooling, { once: true });
 
+  // Function to observe an element
+  const observeElement = (ref: React.MutableRefObject<null>, setAnimationState: { (value: React.SetStateAction<boolean>): void; (value: React.SetStateAction<boolean>): void; (arg0: boolean): void; }) => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setAnimationState(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Adjust this threshold according to your needs
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    // Cleanup observer on unmount
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  };
+
+  // UseEffect for MainContent
+  useEffect(() => {
+    return observeElement(refMainContent, setAnimateMainContent);
+  }, [refMainContent]);
+
+  // UseEffect for Tooling
+  useEffect(() => {
+    return observeElement(refTooling, setAnimateTooling);
+  }, [refTooling]);
   return (
     <div className="flex flex-col">
-      <motion.div
+        <motion.div
         ref={refMainContent}
         className="flex items-center justify-center min-h-screen"
         initial="hidden"
-        animate={isInViewMainContent ? "visible" : "hidden"}
+        animate={animateMainContent ? "visible" : "hidden"}
         variants={variants}
         transition={{ duration: 0.8 }}
       >
@@ -45,18 +73,20 @@ const Home: React.FC = () => {
           showMap={showMap}
           setShowMap={setShowMap}
           mapContainer={mapContainer}
-          isInView={isInViewMainContent}
+          isInView={animateMainContent}
         />
       </motion.div>
       <motion.div
         ref={refTooling}
         className="flex items-center justify-center min-h-screen"
         initial="hidden"
-        animate={isInViewTooling ? "visible" : "hidden"}
+        animate={animateTooling ? "visible" : "hidden"}
         variants={variants}
         transition={{ duration: 0.8 }}
       >
-        <Tooling />
+        <Tooling
+        didReset = { animateTooling }
+        />
       </motion.div>
     </div>
   );
