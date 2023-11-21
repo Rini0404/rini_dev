@@ -39,9 +39,9 @@ export const Navbar = () => {
       style={{
         transform: isInView ? "none" : "translateX(-200px)",
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-        pointerEvents: isInView ? "all" : "none", 
-        visibility: isInView ? "visible" : "hidden", 
-        zIndex: isInView ? 10 : -1, 
+        pointerEvents: isInView ? "all" : "none",
+        visibility: isInView ? "visible" : "hidden",
+        zIndex: isInView ? 10 : -1,
       }}
     >
       <motion.nav
@@ -51,8 +51,14 @@ export const Navbar = () => {
         custom={height}
         ref={containerRef}
       >
-        <motion.div className="background" variants={sidebar} />
-            <Navigation closeWhenClicked={() => toggleOpen()} />
+        <motion.div
+          className= "background"
+          variants={sidebar}
+          style={{ 
+            height: isInView ? "100vh" : "0%",
+          }}
+        />{" "}
+        <Navigation closeWhenClicked={() => toggleOpen()} isOpen = { isOpen } />
         <MenuToggle toggle={() => toggleOpen()} />
       </motion.nav>
     </div>

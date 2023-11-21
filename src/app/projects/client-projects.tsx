@@ -142,7 +142,7 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
                     className="flex flex-wrap p-3"
                   />
 
-                  <div className="flex flex-col gap-4 p-4">
+                  <div className="text-color flex flex-col gap-4 p-4">
                     <p>{project.name}</p>
 
                     <p>{project.shortDesc}</p>

@@ -5,7 +5,7 @@ const Path = (props: React.JSX.IntrinsicAttributes & SVGMotionProps<SVGPathEleme
   <motion.path
     fill="transparent"
     strokeWidth="3"
-    stroke="red"
+    stroke="rgba(0, 255, 170, 0.637)"
     strokeLinecap="round"
     {...props}
   />

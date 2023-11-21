@@ -45,12 +45,13 @@ nav {
 }
 
 .background {
+  border: 1px solid rgba(0, 255, 170, 0.637);
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   width: 300px;
-  background: #fff;
+  background: #1e293b;
 }
 
 ul,

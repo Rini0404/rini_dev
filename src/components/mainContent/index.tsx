@@ -32,7 +32,7 @@ const MainContent: React.FC<MainContentProps> = ({
           typewriter.typeString("Hello, my name is Rini!").start();
         }}
       />
-      <p className="text-lg mb-4">
+      <p className="text-xlg mb-4">
           I am a Full Stack Web and Mobile Developer based in{
           " "} {" "} {" "}{" "} {" "} {" "}
           <button

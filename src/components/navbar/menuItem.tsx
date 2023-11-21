@@ -35,23 +35,23 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   closeWhenClicked,
 }) => {
   return (
-    <motion.li
-      variants={variants}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <div className="icon-placeholder">
-        <Link href={links} legacyBehavior>
-          <span role="img" aria-label="emoji" onClick={closeWhenClicked}>
+    <Link href={links} legacyBehavior>
+      <motion.li
+        variants={variants}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={closeWhenClicked}
+        style={{ cursor: 'pointer' }} // Ensures the entire li looks clickable
+      >
+        <div className="icon-placeholder">
+          <span role="img" aria-label="emoji">
             {emoji}
           </span>
-        </Link>
-      </div>
-      <div className="text-placeholder">
-        <Link href={links} legacyBehavior>
-          <a onClick={closeWhenClicked}>{names}</a>
-        </Link>
-      </div>
-    </motion.li>
+        </div>
+        <div className="text-placeholder text-color">
+          <a>{names}</a>
+        </div>
+      </motion.li>
+    </Link>
   );
 };
