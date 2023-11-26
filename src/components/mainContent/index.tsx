@@ -1,10 +1,9 @@
-// MainContent.js
-import React, { MutableRefObject } from "react";
+import React, { MutableRefObject, useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import { MoovingButton } from "../buttons/moovingButton";
+import DotGrid from "../luffysHand";
 
-// Define an interface for the component's props
 interface MainContentProps {
   showMap: boolean;
   setShowMap: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,7 +17,25 @@ const MainContent: React.FC<MainContentProps> = ({
   mapContainer,
   isInView,
 }) => {
+  const mainContentRef = useRef<HTMLDivElement>(null);
+  const [mainContentSize, setMainContentSize] = useState({ x: 0, y: 0, width: 0, height: 0 });
+
+  useEffect(() => {
+    if (mainContentRef.current) {
+      const rect = mainContentRef.current.getBoundingClientRect();
+      setMainContentSize({
+        x: rect.left,
+        y: rect.top,
+        width: rect.width,
+        height: rect.height
+      });
+    }
+  }, [/* dependencies */]);
+
   return (
+    <>
+      <DotGrid mainContentSize={mainContentSize} />
+      <div ref={mainContentRef} className="container-center">
     <div
       className="text-color p-8 text-center space-y-4"
       style={{
@@ -64,7 +81,7 @@ const MainContent: React.FC<MainContentProps> = ({
             damping: 20,
           }}
           // Tailwind classes for responsive styling
-          className="p-2 rounded overflow-hidden relative mx-auto mt-5 
+          className="p-2 overflow-hidden relative mx-auto mt-5 
           md:absolute md:mt-0 md:top-1/2 
           md:right-72
           md:transform md:-translate-x-1/2 md:-translate-y-1/2" // Adjust the translate values as needed
@@ -73,10 +90,12 @@ const MainContent: React.FC<MainContentProps> = ({
             height: "300px",
           }}
         >
-          <div ref={mapContainer} className="rounded-full w-full h-full"></div>
+          <div ref={mapContainer} className="w-full h-full"></div>
         </motion.div>
       )}
     </div>
+    </div>
+    </>
   );
 };
 

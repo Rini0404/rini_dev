@@ -2,10 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 body {
   font-family: "MonoSpace", monospace;
-  background: #000000;
-  transition: background 0.2s ease; /* Optional: Smoothens the transition of the gradient */
+  background: #121212;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+
+.background-main {
+  top: 0;
+  background: #121212;
+  left: 0;
+  z-index: -1;
 }
 
 .blogs {
@@ -433,4 +450,41 @@ li {
     width: 300px;
     height: 300px;
   }
+}
+
+
+.tech-grid-background {
+  background-color: #1a1a1a; /* Dark background */
+  background-image: 
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 0),
+    linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 0);
+  background-size: 20px 20px; /* Grid size */
+}
+
+.animated-gradient-background {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.dotted-background {
+  background-color: #000000;
+  background-image: radial-gradient(circle, #444 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.diagonal-lines-background {
+  background: repeating-linear-gradient(
+    45deg,
+    #606dbc,
+    #606dbc 10px,
+    #465298 10px,
+    #465298 20px
+  );
 }

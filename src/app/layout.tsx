@@ -4,7 +4,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import React from 'react'
-import SnakeTrail from '../components/luffysHand'
+import Dots from '../components/luffysHand'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        {/* <SnakeTrail /> */}
+        {/* <Dots /> */}
         {children}
       </body>
     </html>

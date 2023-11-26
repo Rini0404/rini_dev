@@ -11,23 +11,23 @@ type MoovingButtonProps = {
 
 export const MoovingButton: React.FC<MoovingButtonProps> = (props) => {
   const hoverAnimation = {
-    width: "100%"
+    width: "100%",
   };
 
   const initialAnimation = {
-    width: "0%"
+    width: "0%",
   };
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.2 }}
-      style={{
-        position: "relative",
-        display: "inline-block",
-      }}
-      className= "mooving-buttons"
-    >
-      <Link href={props.link || "#"} passHref>
+    <Link href={props.link || "#"} passHref>
+      <motion.div
+        whileHover={{ scale: 1.2 }}
+        style={{
+          position: "relative",
+          display: "inline-block",
+        }}
+        className="mooving-buttons"
+      >
         <motion.a
           style={{
             textDecoration: "none",
@@ -39,21 +39,21 @@ export const MoovingButton: React.FC<MoovingButtonProps> = (props) => {
         >
           {props.text}
         </motion.a>
-      </Link>
-      <motion.span
-        initial={initialAnimation}
-        whileHover={hoverAnimation}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        style={{
-          content: '""',
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          height: "2px",
-          backgroundColor: "black",
-          zIndex: 0,
-        }}
-      />
-    </motion.div>
+        <motion.span
+          initial={initialAnimation}
+          whileHover={hoverAnimation}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          style={{
+            content: '""',
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            height: "2px",
+            backgroundColor: "black",
+            zIndex: 0,
+          }}
+        />
+      </motion.div>
+    </Link>
   );
 };
