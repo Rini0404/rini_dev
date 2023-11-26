@@ -183,8 +183,8 @@ li {
   max-width: 900px;
   margin: 0 auto;
   padding: 25px; /* This adds padding on all sides */
-
   @media (max-width: 600px) {
+    padding-top: 9vh;
     column-count: 1; /* On small screens, we only want 1 column */
   }
 }
@@ -393,7 +393,7 @@ li {
   margin-bottom: 20px; /* Adjust space between typewriter and main box */
 }
 
-.mooving-buttons{ 
+.mooving-buttons { 
   margin: 15px !important;
   padding: 10px !important;
   opacity: 0.93 !important;
@@ -402,4 +402,35 @@ li {
   display: table !important;
   box-shadow: 4px 5px 4px 3px rgba(2, 133, 93, 0.137) !important;
   transition: all 0.4s ease 0s !important;
+}
+
+@media screen and (max-width: 640px) {
+  .mooving-buttons { 
+    margin: 10px !important; /* Reduced margin */
+    padding: 8px !important; /* Reduced padding */
+  }
+}
+
+
+
+@media screen and (max-width: 844px) {
+  .map-container {
+    position: fixed;
+    top: 60%;
+    left: 5%;
+    width: 3vw;
+    height: 10vh;
+    z-index: 100;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .map-container {
+    position: absolute;
+    top: 50%;
+    right: 19%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+  }
 }

@@ -29,6 +29,7 @@ const Blogs: React.FC<BlogsProps> = ({ data }) => {
           >
             {/* Thumbnail */}
             <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={blog.thumbnail}
                 alt={blog.title}

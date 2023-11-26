@@ -45,20 +45,22 @@ export const Navbar = () => {
       }}
     >
       <motion.nav
-        style={{ zIndex: 10 }}
+        style={{
+          zIndex: isOpen ? 10 : 0, // Adjust zIndex based on isOpen
+        }}
         initial={false}
         animate={isOpen ? "open" : "closed"}
         custom={height}
         ref={containerRef}
       >
         <motion.div
-          className= "background"
+          className="background"
           variants={sidebar}
-          style={{ 
+          style={{
             height: isInView ? "100vh" : "0%",
           }}
         />{" "}
-        <Navigation closeWhenClicked={() => toggleOpen()} isOpen = { isOpen } />
+        <Navigation closeWhenClicked={() => toggleOpen()} isOpen={isOpen} />
         <MenuToggle toggle={() => toggleOpen()} />
       </motion.nav>
     </div>

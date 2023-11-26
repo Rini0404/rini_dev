@@ -18,7 +18,6 @@ const MainContent: React.FC<MainContentProps> = ({
   mapContainer,
   isInView,
 }) => {
-  console.log('showMap: ', showMap)
   return (
     <div
       className="text-color p-8 text-center space-y-4"
@@ -29,7 +28,7 @@ const MainContent: React.FC<MainContentProps> = ({
       }}
     >
       <div
-        style = {{
+        style={{
           color: "#20C20E",
           fontSize: "20px",
         }}
@@ -40,53 +39,43 @@ const MainContent: React.FC<MainContentProps> = ({
           }}
         />
       </div>
-        <p className="text-xlg mb-4">
-          I am a Full Stack Web and Mobile Developer based in{" "}
-          <button
-            className="cursor-pointer pulsate-effect"
-            onMouseEnter={() => setShowMap(true)}
-            onMouseLeave={() => setShowMap(false)}
-          >
-            <span className="text-color">Orlando, FL</span>
-          </button>
-        </p>
+      <p className="text-xlg mb-4">
+        I am a Full Stack Web and Mobile Developer based in{" "}
+        <button
+          className="cursor-pointer pulsate-effect"
+          onMouseEnter={() => setShowMap(true)}
+          onMouseLeave={() => setShowMap(false)}
+        >
+          <span className="text-color">Orlando, FL</span>
+        </button>
+      </p>
 
-        {showMap && (
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 260,
-              damping: 20,
-            }}
-            className="absolute p-2 rounded overflow-hidden"
-            style={{
-              width: "300px",
-              height: "300px",
-              top: "50%",
-              right: "19%",
-            }}
-          >
-            <div
-              ref={mapContainer}
-              className="rounded-full absolute"
-              style={{
-                width: "100%",
-                height: "100%",
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            ></div>
-          </motion.div>
-        )}
-
-        <div className="flex justify-center space-x-10 space-between">
-          <MoovingButton text="About Me" link="/aboutMe" />
-          <MoovingButton text="Projects" link="/projects" />
-          <MoovingButton text="Blogs" link="/blogs" />
-        </div>
+      <div className="flex justify-center space-x-10 space-between">
+        <MoovingButton text="Projects" link="/projects" />
+        <MoovingButton text="Blogs" link="/blogs" />
+      </div>
+      {showMap && (
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+          }}
+          // Tailwind classes for responsive styling
+          className="p-2 rounded overflow-hidden relative mx-auto mt-5 
+          md:absolute md:mt-0 md:top-1/2 
+          md:right-72
+          md:transform md:-translate-x-1/2 md:-translate-y-1/2" // Adjust the translate values as needed
+          style={{
+            width: "300px",
+            height: "300px",
+          }}
+        >
+          <div ref={mapContainer} className="rounded-full w-full h-full"></div>
+        </motion.div>
+      )}
     </div>
   );
 };

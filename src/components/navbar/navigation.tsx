@@ -16,16 +16,8 @@ const names = ["Home", "Projects", "Blogs"];
 
 const emoji = ["🏠", "📁", "📝"];
 
-const variants = {
-  open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
-  },
-  closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 },
-  },
-};
 
-const menuItemVariants = {
+const variants = {
   open: {
     opacity: 1,
     visibility: 'visible',
@@ -43,7 +35,7 @@ const menuItemVariants = {
 
 export const Navigation = ({ closeWhenClicked, isOpen }: NavigationProps) => (
   <motion.ul
-  variants={menuItemVariants}
+  variants={variants}
   initial="closed"
   animate={isOpen ? "open" : "closed"} // Control the animation based on isOpen
 

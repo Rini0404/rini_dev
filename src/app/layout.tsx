@@ -4,7 +4,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import React from 'react'
-import LuffyHand from '../components/luffysHand'
 import SnakeTrail from '../components/luffysHand'
 const inter = Inter({ subsets: ['latin'] })
 
