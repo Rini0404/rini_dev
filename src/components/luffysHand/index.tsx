@@ -1,46 +1,37 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 type Dot = {
-  rotation: any;
-  height: any;
-  width: any;
   x: number;
   y: number;
   key: string;
   transformX: number;
   transformY: number;
+  targetTransformX: number;
+  targetTransformY: number;
 };
 
-type MainContentSize = { x: number; y: number; width: number; height: number };
-
-// DotGrid component
-const DotGrid: React.FC<{ mainContentSize: MainContentSize }> = ({
+const DotGrid: React.FC<{ mainContentSize: { x: number; y: number; width: number; height: number } }> = ({
   mainContentSize,
 }) => {
   const [dots, setDots] = useState<Dot[]>([]);
-  const dotSize = 10; // You can adjust this size if needed
-  const desiredCoverage = 350; // Adjust this to your liking
+  const dotSize = 10;
+  const desiredCoverage = 150;
+  const mousePosition = useRef({ x: 0, y: 0 });
+  
   useEffect(() => {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
 
-    const spacingX =
-      Math.sqrt((screenWidth * screenHeight) / desiredCoverage) / dotSize;
-    const spacingY =
-      Math.sqrt((screenWidth * screenHeight) / desiredCoverage) / dotSize;
+    const spacingX = Math.sqrt((screenWidth * screenHeight) / desiredCoverage) / dotSize;
+    const spacingY = Math.sqrt((screenWidth * screenHeight) / desiredCoverage) / dotSize;
 
     const newDots: Dot[] = [];
     for (let x = 0; x < screenWidth; x += spacingX * dotSize) {
       for (let y = 0; y < screenHeight; y += spacingY * dotSize) {
-        // Check if the dot is within the main content box
-        if (
-          x >= mainContentSize.x &&
-          x <= mainContentSize.x + mainContentSize.width &&
-          y >= mainContentSize.y &&
-          y <= mainContentSize.y + mainContentSize.height
-        ) {
+        if (x >= mainContentSize.x && x <= mainContentSize.x + mainContentSize.width &&
+            y >= mainContentSize.y && y <= mainContentSize.y + mainContentSize.height) {
           continue; // Skip dots within the main content
         }
 
@@ -50,61 +41,69 @@ const DotGrid: React.FC<{ mainContentSize: MainContentSize }> = ({
           key: `${x}-${y}`,
           transformX: 0,
           transformY: 0,
-          height: undefined,
-          width: undefined,
-          rotation: undefined
+          targetTransformX: 0,
+          targetTransformY: 0,
         });
       }
     }
     setDots(newDots);
-  }, [mainContentSize /* dependencies */]);
+  }, [mainContentSize]);
 
   const handleMouseMove = (event: MouseEvent) => {
-    setDots(
-      dots.map((dot) => {
-        const distanceX = event.clientX - dot.x;
-        const distanceY = event.clientY - dot.y;
-        const distance = Math.sqrt(
-          distanceX * distanceX + distanceY * distanceY
-        );
+    mousePosition.current = { x: event.clientX, y: event.clientY };
+    setDots((prevDots) => {
+      return prevDots.map((dot) => {
+        const distanceX = mousePosition.current.x - dot.x;
+        const distanceY = mousePosition.current.y - dot.y;
+        const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-        const angleToCursor =
-          Math.atan2(distanceY, distanceX) * (180 / Math.PI); // Convert to degrees
-
-        const maxStretchFactor = 5; // Maximum stretch factor
         const maxEffectDistance = 500; // Max distance for stretching effect
-
-        let stretchFactor = 1;
+        let transformFactor = 1;
         if (distance < maxEffectDistance) {
-          stretchFactor +=
-            (maxStretchFactor - 1) * (1 - distance / maxEffectDistance);
+          transformFactor = 1 - distance / maxEffectDistance;
         }
-
-        // Adjust the width for the stretch
-        const newWidth = dotSize * stretchFactor;
-        // Height remains the same to give a stretching effect
-        const newHeight = dotSize;
 
         return {
           ...dot,
-          width: newWidth,
-          height: newHeight,
-          rotation: angleToCursor,
+          targetTransformX: distanceX * transformFactor,
+          targetTransformY: distanceY * transformFactor,
         };
-      })
-    );
+      });
+    });
   };
 
   useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
+    const updateDots = () => {
+      setDots((prevDots) => {
+        return prevDots.map((dot) => {
+          // Gradually move dot transforms to their targets
+          const transformX = dot.transformX + (dot.targetTransformX - dot.transformX) * 0.1;
+          const transformY = dot.transformY + (dot.targetTransformY - dot.transformY) * 0.1;
+          return {
+            ...dot,
+            transformX: transformX,
+            transformY: transformY,
+          };
+        });
+      });
+      requestAnimationFrame(updateDots);
+    };
 
+    const animationFrameId = requestAnimationFrame(updateDots);
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [dots]);
+  }, []);
 
   return (
-    <div className=" background-main">
+    <div className="background-main">
       {dots.map((dot) => (
         <div
           key={dot.key}
@@ -112,14 +111,15 @@ const DotGrid: React.FC<{ mainContentSize: MainContentSize }> = ({
             position: "absolute",
             left: dot.x,
             top: dot.y,
-            width: `${dot.width}px`,
-            height: `${dot.height}px`,
-            borderRadius: "20%",
-            transform: `rotate(${dot.rotation}deg)`,
-            transition: "transform 0.1s ease, width 0.1s ease",
+            width: `${dotSize}px`,
+            height: `${dotSize}px`,
+            borderRadius: "50%",
+            transform: `translate(${dot.transformX}px, ${dot.transformY}px)`,
+            transition: "transform 0.1s ease",
           }}
-          className="bg-slate-800"
-          />
+          className="dot bg-slate-800"
+        />
+        
       ))}
     </div>
   );
