@@ -54,15 +54,19 @@ const MainContent: React.FC<MainContentProps> = ({
             transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
           }}
         >
-          <div style={{ fontSize: "60px" }}>
-            <h2 className="text-color text-4xl font-bold custom-underline">
+          <div style={{ fontSize: "3.75rem" /* 60px equivalent */ }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/rini.png" alt="Rini" className="rounded-full 
+            border-4 border-color w-20 h-20 mx-auto mb-4
+            md:w-40 md:h-40" />
+            <h2 className="text-color text-3xl md:text-4xl font-bold custom-underline">
               Hello! I am <span className="highlight-name">Rini</span>.
             </h2>
             <h1>
               <span className="wave">✌🏾</span>
             </h1>
           </div>
-          <p className="text-xlg mb-4">
+          <p className="text-lg md:text-xlg mb-4">
             I am a{" "}
             <span className="highlight-role">
               Full Stack Web and Mobile Developer
@@ -77,7 +81,7 @@ const MainContent: React.FC<MainContentProps> = ({
             </button>
           </p>
 
-          <div className="text-color text-2xl inline-typewriter">
+          <div className="text-color text-xl md:text-2xl inline-typewriter">
             <span className="highlight-role">
               <Typewriter
                 options={{
