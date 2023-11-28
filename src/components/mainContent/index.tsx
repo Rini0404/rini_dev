@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import { MoovingButton } from "../buttons/moovingButton";
 import DotGrid from "../luffysHand";
+import ArrowSvg from "../arrow";
 
 interface MainContentProps {
   showMap: boolean;
@@ -18,6 +19,7 @@ const MainContent: React.FC<MainContentProps> = ({
   isInView,
 }) => {
   const mainContentRef = useRef<HTMLDivElement>(null);
+
   const [mainContentSize, setMainContentSize] = useState({
     x: 0,
     y: 0,
@@ -25,22 +27,27 @@ const MainContent: React.FC<MainContentProps> = ({
     height: 0,
   });
 
-  useEffect(
-    () => {
-      if (mainContentRef.current) {
-        const rect = mainContentRef.current.getBoundingClientRect();
-        setMainContentSize({
-          x: rect.left,
-          y: rect.top,
-          width: rect.width,
-          height: rect.height,
-        });
-      }
+  useEffect(() => {
+    if (mainContentRef.current) {
+      const rect = mainContentRef.current.getBoundingClientRect();
+      setMainContentSize({
+        x: rect.left,
+        y: rect.top,
+        width: rect.width,
+        height: rect.height,
+      });
+    }
+  }, []);
+
+  const basicTestVariants = {
+    animate: {
+      scale: [1, 1.5, 1], // Simple scale animation
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+      },
     },
-    [
-      /* dependencies */
-    ]
-  );
+  };
 
   return (
     <>
@@ -56,9 +63,13 @@ const MainContent: React.FC<MainContentProps> = ({
         >
           <div style={{ fontSize: "3.75rem" /* 60px equivalent */ }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/rini.png" alt="Rini" className="rounded-full 
+            <img
+              src="/rini.png"
+              alt="Rini"
+              className="rounded-full 
             border-4 border-color w-20 h-20 mx-auto mb-4
-            md:w-40 md:h-40" />
+            md:w-40 md:h-40"
+            />
             <h2 className="text-color text-3xl md:text-4xl font-bold custom-underline">
               Hello! I am <span className="highlight-name">Rini</span>.
             </h2>
@@ -115,9 +126,9 @@ const MainContent: React.FC<MainContentProps> = ({
               }}
               // Tailwind classes for responsive styling
               className="p-2 overflow-hidden relative mx-auto mt-5 
-          md:absolute md:mt-0 md:top-1/2 
-          md:right-72
-          md:transform md:-translate-x-1/2 md:-translate-y-1/2" // Adjust the translate values as needed
+                md:absolute md:mt-0 md:top-1/2 
+                md:right-56
+                md:transform md:-translate-x-1/2 md:-translate-y-1/2"
               style={{
                 width: "300px",
                 height: "300px",
@@ -126,6 +137,15 @@ const MainContent: React.FC<MainContentProps> = ({
               <div ref={mapContainer} className="w-full h-full"></div>
             </motion.div>
           )}
+        </div>
+        <div className="flex justify-center mt-5">
+          <motion.div
+            variants={basicTestVariants}
+            animate="animate"
+            className="arrow-icon"
+          >
+            <ArrowSvg />  
+          </motion.div>
         </div>
       </div>
     </>
