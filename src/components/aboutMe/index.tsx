@@ -5,8 +5,7 @@ import ContactMe from "../contactMe";
 import { motion } from "framer-motion";
 
 export const AboutMe: React.FC = () => {
-  // Define your animation variants
-
+  const isMobile = window.innerWidth <= 768;
 
   const leftVariant = {
     offscreen: { opacity: 0, x: -50 },
@@ -18,34 +17,36 @@ export const AboutMe: React.FC = () => {
     onscreen: { opacity: 1, y: 0 },
   };
 
+  const imageIsForMobile = "w-40 h-50"
+
   return (
-    <>
       <motion.div
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: false, amount: 0.8 }}
-          variants={leftVariant} 
-          className="flex flex-col w-3/4 sm:w-2/3 md:w-1/2 h-full rounded-lg shadow-lg tooling-border text-color p-8">
-      <motion.div
+        initial={isMobile ? "visible" : "offscreen"}
+        whileInView="onscreen"
+        viewport={{ once: false, amount: 0.8 }}
+        variants={leftVariant}
+        className="flex flex-col w-full xs:w-3/4 sm:w-2/4 md:w-2/3 lg:w-1/2 max-w-md mx-auto h-full rounded-lg shadow-lg tooling-border text-color p-4 sm:p-8"
+      >
+        <motion.div
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: false, amount: 0.8 }}
           variants={upVariant}
-          className="flex flex-1"
+          className="flex flex-col sm:flex-row flex-1"
         >
           {/* Text container */}
           <div
             // make this 50% of the width of the parent container
-            className="w-1/2"
+            className="w-full sm:w-1/2"
             style={{
               paddingLeft: "0.5rem",
             }}
           >
-            <h1 className="text-4xl md:text-2xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-2xl font-bold mb-4">
               About Me <span className="wave">👋🏾</span>
             </h1>
             {/* Shortened about me paragraphs */}
-            <p className="text-lg md:text-xl mb-4">
+            <p className="text-md sm:text-lg md:text-xl mb-4">
               <span className="highlight-role">
                 From construction sites to coding bytes
               </span>
@@ -75,19 +76,20 @@ export const AboutMe: React.FC = () => {
 
           {/* Image container */}
           <motion.div
-          viewport={{ once: false, amount: 0.8 }}
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          variants={leftVariant}
-          transition={{ delay: 0.5 }}
-          className="w-1/2 flex justify-center items-center">
-            <img
-              src="/ice.jpg"
-              alt="Rini"
-              className="rounded-full border-4 w-80"
-              style={{ borderColor: "rgba(0, 255, 170, 0.637)" }}
-            />
-          </motion.div>
+            viewport={{ once: false, amount: 0.8 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            variants={leftVariant}
+            transition={{ delay: 0.5 }}
+            className="w-full sm:w-1/2 flex justify-center items-center"
+            >
+              <img
+                src="/ice.jpg"
+                alt="Rini"
+                className={`rounded-full border-4 ${imageIsForMobile}`}
+                style={{ borderColor: "rgba(0, 255, 170, 0.637)" }}
+              />
+            </motion.div>
         </motion.div>
 
         <motion.div
@@ -95,11 +97,12 @@ export const AboutMe: React.FC = () => {
           variants={upVariant}
           whileInView="onscreen"
           viewport={{ once: false, amount: 0.8 }}
-          className="h-full rounded-lg shadow-lg tooling-border text-color p-12"
+          className="h-full rounded-lg shadow-lg tooling-border text-color p-4 sm:p-12"
         >
-          <ContactMe />
+          <ContactMe 
+            isMobile={isMobile}
+          />
         </motion.div>
       </motion.div>
-    </>
   );
 };

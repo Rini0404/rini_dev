@@ -522,6 +522,19 @@ li {
   }
 }
 
+.down-point {
+  display: inline-block;
+  animation: wave-animation-down 2s infinite;
+}
+
+@keyframes wave-animation-down {
+  0%, 100% { 
+    transform: translateX(0); 
+  }
+  50% { 
+    transform: translateX(190px); /* Adjust movement distance as needed */
+  }
+}
 
 
 @keyframes wave-animation {
