@@ -13,8 +13,7 @@ type BlogsProps = {
   data: BlogsArray;
 };
 
-const BlogsPage: React.FC<BlogsProps> = async () => {
-
+const BlogsPage: React.FC<BlogsProps> = () => {
   const [blogs, setBlogs] = React.useState<BlogsArray>([]);
 
   React.useEffect(() => {
@@ -24,16 +23,13 @@ const BlogsPage: React.FC<BlogsProps> = async () => {
     };
 
     fetchBlogs();
-  }
-  , []);
+  }, []);
   
   return (
     <div>
-      <Blogs
-        data={blogs}
-      />
+      <Blogs data={blogs} />
     </div>
   );
 }
 
-export default BlogsPage
+export default BlogsPage;

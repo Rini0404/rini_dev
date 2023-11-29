@@ -4,17 +4,16 @@ import ProjectsClient from './client-projects'
 import { GET } from '../api/projects/route'
 
 const getAllProjects = async () => {
-  const response = await GET()
-  const data = await response.json()
-  return data
+  const response = await GET();
+  const data = await response.json();
+  return data;
 }
 
 type ProjectsPropsData = {
-  data: ProjectProps
+  data: ProjectProps;
 }
 
-const Projects: React.FC<ProjectsPropsData> = async () => {
-
+const Projects: React.FC<ProjectsPropsData> = () => {
   const [projects, setProjects] = React.useState<ProjectProps>([]);
 
   React.useEffect(() => {
@@ -27,16 +26,13 @@ const Projects: React.FC<ProjectsPropsData> = async () => {
     fetchProjects();
   }, []);
 
-
   return (
     <div>
       <ProjectsClient
         data={projects}
       />
     </div>
-  )
-
+  );
 }
 
-
-export default Projects
+export default Projects;
