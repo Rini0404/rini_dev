@@ -2,7 +2,7 @@ import React, { MutableRefObject, useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import { MoovingButton } from "../buttons/moovingButton";
-import DotGrid from "../luffysHand";
+import DotGrid from "../gridEffect";
 import ArrowSvg from "../arrow";
 
 interface MainContentProps {
@@ -137,15 +137,27 @@ const MainContent: React.FC<MainContentProps> = ({
               <div ref={mapContainer} className="w-full h-full"></div>
             </motion.div>
           )}
-        </div>
-        <div className="flex justify-center mt-5">
+        <div className="flex justify-center mt-5"
+          style={{
+            paddingTop: "100px",
+          }}
+        >
           <motion.div
             variants={basicTestVariants}
             animate="animate"
             className="arrow-icon"
+            onClick={() => {
+              window.scrollTo({
+                top: mainContentSize.height + 180,
+                behavior: "smooth",
+              });
+            }}
           >
-            <ArrowSvg />  
+            <ArrowSvg
+              
+            />  
           </motion.div>
+        </div>
         </div>
       </div>
     </>

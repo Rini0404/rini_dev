@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import useMapboxMap from "../hooks/useMapboxMap";
 import MainContent from "../components/mainContent";
 import { Tooling } from "../components/tooling";
+import { AboutMe } from "../components/aboutMe";
 
 const Home: React.FC = () => {
   const [showMap, setShowMap] = useState(false);
@@ -20,7 +21,7 @@ const Home: React.FC = () => {
   });
   const variants = {
     visible: { opacity: 1, translateY: 0 },
-    hidden: { opacity: 0, translateY: 50 }
+    hidden: { opacity: 0, translateY: 50 },
   };
 
   const [animateMainContent, setAnimateMainContent] = useState(false);
@@ -29,8 +30,22 @@ const Home: React.FC = () => {
   const refMainContent = useRef(null);
   const refTooling = useRef(null);
 
+  const [animateAboutMe, setAnimateAboutMe] = useState(false);
+  const refAboutMe = useRef(null);
+
+  useEffect(() => {
+    return observeElement(refAboutMe, setAnimateAboutMe);
+  }, [refAboutMe]);
+
   // Function to observe an element
-  const observeElement = (ref: React.MutableRefObject<null>, setAnimationState: { (value: React.SetStateAction<boolean>): void; (value: React.SetStateAction<boolean>): void; (arg0: boolean): void; }) => {
+  const observeElement = (
+    ref: React.MutableRefObject<null>,
+    setAnimationState: {
+      (value: React.SetStateAction<boolean>): void;
+      (value: React.SetStateAction<boolean>): void;
+      (arg0: boolean): void;
+    }
+  ) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setAnimationState(entry.isIntersecting);
@@ -63,10 +78,11 @@ const Home: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
+
   return (
     <div className="flex flex-col">
-        <motion.div
+      <motion.div
         ref={refMainContent}
         className="flex items-center justify-center min-h-screen"
         initial="hidden"
@@ -89,11 +105,21 @@ const Home: React.FC = () => {
         variants={variants}
         transition={{ duration: 0.8 }}
       >
-        <Tooling
-        didReset = { animateTooling }
-        />
+        <Tooling didReset={animateTooling} />
+      </motion.div>
+      <motion.div
+        ref={refAboutMe}
+        viewport={{ once: false, amount: 0.8 }}
+        className="flex items-center justify-center min-h-screen"
+        initial="hidden"
+        animate={animateAboutMe ? "visible" : "hidden"}
+        variants={variants}
+        transition={{ duration: 0.8 }}
+      >
+        <AboutMe />
       </motion.div>
     </div>
   );
 };
+
 export default Home;

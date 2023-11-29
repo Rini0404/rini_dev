@@ -508,6 +508,22 @@ li {
   display: inline-block;
 }
 
+.point {
+  display: inline-block; /* Ensures transform applies correctly */
+  animation: slideInOut 2s ease-in-out infinite;
+}
+
+@keyframes slideInOut {
+  0%, 100% { 
+    transform: translateX(0); 
+  }
+  50% { 
+    transform: translateX(100px); /* Adjust movement distance as needed */
+  }
+}
+
+
+
 @keyframes wave-animation {
   0% {
     transform: rotate(0deg);
