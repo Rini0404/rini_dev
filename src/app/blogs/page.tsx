@@ -14,9 +14,19 @@ type BlogsProps = {
 };
 
 const BlogsPage: React.FC<BlogsProps> = async () => {
-  const blogs = await getAllBlogs();
 
+  const [blogs, setBlogs] = React.useState<BlogsArray>([]);
 
+  React.useEffect(() => {
+    const fetchBlogs = async () => {
+      const fetchedBlogs = await getAllBlogs();
+      setBlogs(fetchedBlogs);
+    };
+
+    fetchBlogs();
+  }
+  , []);
+  
   return (
     <div>
       <Blogs
