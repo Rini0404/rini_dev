@@ -4,7 +4,7 @@ import { BlogsArray } from "../../blogs/blog-types";
 
 // ... other imports ...
 
-export default async function GET_PROJECTS(req: NextRequest, res: NextResponse) {
+async function GET_BLOGS(req: NextRequest, res: NextResponse) {
   try {
     const blogs: BlogsArray = await prisma.blogs.findMany();
     return new NextResponse(JSON.stringify(blogs), {
@@ -21,3 +21,8 @@ export default async function GET_PROJECTS(req: NextRequest, res: NextResponse) 
   } 
 }
 
+async function handler(req: NextRequest, res: NextResponse) {
+  return GET_BLOGS(req, res);
+}
+
+export { handler as GET}

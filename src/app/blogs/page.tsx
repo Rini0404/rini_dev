@@ -1,10 +1,10 @@
 import React from "react";
-import GET_BLOGS from "../api/blogs/route";
+import { GET } from "../api/blogs/route";
 import { BlogsArray } from "./blog-types";
 import Blogs from "./client-blog";
 
 const getAllBlogs = async () => {
-  const response = await GET_BLOGS();
+  const response = await GET();
   const data = await response.json();
   return data;
 };

@@ -1,10 +1,10 @@
 import React from 'react'
 import { ProjectProps } from './project-types'
 import ProjectsClient from './client-projects'
-import GET_PROJECTS from '../api/projects/route'
+import { GET } from '../api/projects/route'
 
 const getAllProjects = async () => {
-  const response = await GET_PROJECTS()
+  const response = await GET()
   const data = await response.json()
   return data
 }

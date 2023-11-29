@@ -4,7 +4,7 @@ import { ProjectProps } from "../../projects/project-types";
 import React from "react";
 
 
-export default async function GET_PROJECTS(req: NextRequest, res: NextResponse) {
+async function GET_PROJECTS(req: NextRequest, res: NextResponse) {
 
   try {
 
@@ -28,3 +28,9 @@ export default async function GET_PROJECTS(req: NextRequest, res: NextResponse) 
   }
 
 }
+
+async function handler(req: NextRequest, res: NextResponse) {
+  return GET_PROJECTS(req, res);
+}
+
+export { handler as GET}
