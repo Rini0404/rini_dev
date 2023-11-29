@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse,  NextRequest } from "next/server";
 import prisma from '@/prisma/client';
 import { BlogsArray } from "../../blogs/blog-types";
 
