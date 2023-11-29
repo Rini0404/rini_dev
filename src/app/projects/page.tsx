@@ -15,9 +15,18 @@ type ProjectsPropsData = {
 
 const Projects: React.FC<ProjectsPropsData> = async () => {
 
-  const projects = await getAllProjects()
+  const [projects, setProjects] = React.useState<ProjectProps>([]);
 
-  console.log('console.log projects: ', projects)
+  React.useEffect(() => {
+    const fetchProjects = async () => {
+      const fetchedProjects = await getAllProjects();
+      console.log('console.log projects: ', fetchedProjects);
+      setProjects(fetchedProjects);
+    };
+
+    fetchProjects();
+  }, []);
+
 
   return (
     <div>
