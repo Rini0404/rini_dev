@@ -1,32 +1,24 @@
-import React from 'react'
-import { ProjectProps } from './project-types'
-import ProjectsClient from './client-projects'
-import { GET } from '../api/projects/route'
+import React from "react";
+import { ProjectProps } from "./project-types";
+import ProjectsClient from "./client-projects";
+import { GET } from "../api/projects/route";
 
-const getAllProjects = async () => {
-  const response = await GET()
-  const data = await response.json()
-  return data
-}
-
-type ProjectsPropsData = {
-  data: ProjectProps
-}
-
-const Projects: React.FC<ProjectsPropsData> = async () => {
-
-  const projects = await getAllProjects();
-
+// Assuming that 'ProjectProps' is an array type. Adjust it accordingly.
+const Projects = async ({
+  params,
+  searchParams,
+}: {
+  params: { [key: string]: any };
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  const response = await GET();
+  const data = await response.json();
 
   return (
     <div>
-      <ProjectsClient
-        data={projects}
-      />
+      <ProjectsClient data={data} />
     </div>
-  )
+  );
+};
 
-}
-
-
-export default Projects
+export default Projects;

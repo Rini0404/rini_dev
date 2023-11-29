@@ -3,22 +3,21 @@ import { GET } from "../api/blogs/route";
 import { BlogsArray } from "./blog-types";
 import Blogs from "./client-blog";
 
-const getAllBlogs = async () => {
-  const response = await GET();
-  const data = await response.json();
-  return data;
-};
 
-type BlogsProps = {
-  data: BlogsArray;
-};
+const BlogsPage: React.FC<BlogsProps> =  async ({
+  params,
+  searchParams,
+}: {
+  params: { [key: string]: any };
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
 
-const BlogsPage: React.FC<BlogsProps> = async () => {
-    const blogs = await getAllBlogs();
-  
+    const response = await GET();
+    const data = await response.json();
+
   return (
     <div>
-      <Blogs data={blogs} />
+      <Blogs data={data} />
     </div>
   );
 }
