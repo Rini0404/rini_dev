@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextResponse,  NextRequest } from "next/server";
 import prisma from '@/prisma/client';
 import { ProjectProps } from "../../projects/project-types";
+import React from "react";
 
 
-
-async function GET_PROJECTS(): Promise<NextResponse> {
+export default async function GET_PROJECTS(req: NextRequest, res: NextResponse) {
 
   try {
 
@@ -28,5 +28,3 @@ async function GET_PROJECTS(): Promise<NextResponse> {
   }
 
 }
-
-module.exports = GET_PROJECTS;
