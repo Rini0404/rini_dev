@@ -4,7 +4,7 @@ import { ProjectProps } from "../../projects/project-types";
 
 
 
-async function GET_PROJECTS(): Promise<NextResponse> {
+export default async function GET_PROJECTS(): Promise<NextResponse> {
 
   try {
 
@@ -28,5 +28,3 @@ async function GET_PROJECTS(): Promise<NextResponse> {
   }
 
 }
-
-module.exports = GET_PROJECTS;
