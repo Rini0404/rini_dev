@@ -49,6 +49,15 @@ const MainContent: React.FC<MainContentProps> = ({
     },
   };
 
+  // useState to hold the isMobile state
+  const [isMobile, setIsMobile] = useState(false);
+
+  // useEffect to set the isMobile state after the component mounts
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
+
   return (
     <>
       <DotGrid mainContentSize={mainContentSize} />
@@ -148,7 +157,7 @@ const MainContent: React.FC<MainContentProps> = ({
             className="arrow-icon"
             onClick={() => {
               window.scrollTo({
-                top: mainContentSize.height + 180,
+                top: isMobile ? mainContentSize.height + 250 : mainContentSize.height + 180,
                 behavior: "smooth",
               });
             }}

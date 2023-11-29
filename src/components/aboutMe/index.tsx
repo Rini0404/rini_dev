@@ -1,11 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ContactMe from "../contactMe";
 import { motion } from "framer-motion";
 
 export const AboutMe: React.FC = () => {
-  const isMobile = window.innerWidth <= 768;
+  // useState to hold the isMobile state
+  const [isMobile, setIsMobile] = useState(false);
+
+  // useEffect to set the isMobile state after the component mounts
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
 
   const leftVariant = {
     offscreen: { opacity: 0, x: -50 },
@@ -20,12 +27,13 @@ export const AboutMe: React.FC = () => {
   const imageIsForMobile = "w-40 h-50"
 
   return (
+    <>
       <motion.div
         initial={isMobile ? "visible" : "offscreen"}
         whileInView="onscreen"
         viewport={{ once: false, amount: 0.8 }}
         variants={leftVariant}
-        className="flex flex-col w-full xs:w-3/4 sm:w-2/4 md:w-2/3 lg:w-1/2 max-w-md mx-auto h-full rounded-lg shadow-lg tooling-border text-color p-4 sm:p-8"
+        className="flex flex-col w-full sm:w-2/4 md:w-2/3 lg:w-1/2 h-full rounded-lg shadow-lg tooling-border text-color p-4 sm:p-8"
       >
         <motion.div
           initial="offscreen"
@@ -104,5 +112,6 @@ export const AboutMe: React.FC = () => {
           />
         </motion.div>
       </motion.div>
+    </>
   );
 };

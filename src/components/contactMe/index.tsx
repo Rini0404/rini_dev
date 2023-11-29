@@ -12,10 +12,10 @@ const ContactMe: React.FC<ContactMeProps> = ({ isMobile }) => {
     <div className="flex flex-col sm:flex-row justify-between">
       <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-0">
         Get in touch!
-        {!isMobile ? (
-          <span className="point">👉🏽</span>
-        ) : (
+        {isMobile ? (
           <span className="down-point">👇🏽</span>
+          ) : (
+          <span className="point">👉🏽</span>
         )}
       </h2>
       <div className="flex flex-wrap items-center">
