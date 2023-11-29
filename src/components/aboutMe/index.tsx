@@ -8,13 +8,14 @@ export const AboutMe: React.FC = () => {
   // Define your animation variants
 
 
-  const downVariant = {
-    offscreen: { opacity: 0, y: 100 },
-    onscreen: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", bounce: 0.4, duration: 1.2 },
-    },
+  const leftVariant = {
+    offscreen: { opacity: 0, x: -50 },
+    onscreen: { opacity: 1, x: 0 },
+  };
+
+  const upVariant = {
+    offscreen: { opacity: 0, y: 50 },
+    onscreen: { opacity: 1, y: 0 },
   };
 
   return (
@@ -23,13 +24,13 @@ export const AboutMe: React.FC = () => {
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: false, amount: 0.8 }}
-          variants={downVariant} 
+          variants={leftVariant} 
           className="flex flex-col w-3/4 sm:w-2/3 md:w-1/2 h-full rounded-lg shadow-lg tooling-border text-color p-8">
       <motion.div
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: false, amount: 0.8 }}
-          variants={downVariant}
+          variants={upVariant}
           className="flex flex-1"
         >
           {/* Text container */}
@@ -77,7 +78,7 @@ export const AboutMe: React.FC = () => {
           viewport={{ once: false, amount: 0.8 }}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          variants={downVariant}
+          variants={leftVariant}
           transition={{ delay: 0.5 }}
           className="w-1/2 flex justify-center items-center">
             <img
@@ -91,7 +92,7 @@ export const AboutMe: React.FC = () => {
 
         <motion.div
           initial="offscreen"
-          variants={downVariant}
+          variants={upVariant}
           whileInView="onscreen"
           viewport={{ once: false, amount: 0.8 }}
           className="h-full rounded-lg shadow-lg tooling-border text-color p-12"
