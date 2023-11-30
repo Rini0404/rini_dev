@@ -8,13 +8,11 @@ const getAllProjects = async () => {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const response = await fetch(`${apiUrl}/api/projects`);
-    console.log('RINI: ', response)
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('RINI: ', data)
     return data;
   } catch (error) {
     console.error('Failed to fetch projects:', error);

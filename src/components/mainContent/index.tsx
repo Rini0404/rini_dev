@@ -79,14 +79,14 @@ const MainContent: React.FC<MainContentProps> = ({
             border-4 border-color w-20 h-20 mx-auto mb-4
             md:w-40 md:h-40"
             />
-            <h2 className="text-color text-3xl md:text-4xl font-bold custom-underline">
+            <h2 className="text-color text-2xl md:text-4xl font-bold custom-underline">
               Hello! I am <span className="highlight-name">Rini</span>.
             </h2>
             <h1>
               <span className="wave">✌🏾</span>
             </h1>
           </div>
-          <p className="text-lg md:text-xlg mb-4">
+          <p className="text-md md:text-xlg mb-4">
             I am a{" "}
             <span className="highlight-role">
               Full Stack Web and Mobile Developer
@@ -119,7 +119,7 @@ const MainContent: React.FC<MainContentProps> = ({
             </span>
           </div>
 
-          <div className="flex justify-center space-x-10 space-between">
+          <div className="flex justify-center space-x-5 space-between">
             <MoovingButton text="Projects" link="/projects" />
             <MoovingButton text="Blogs" link="/blogs" />
           </div>
@@ -139,8 +139,8 @@ const MainContent: React.FC<MainContentProps> = ({
                 md:right-56
                 md:transform md:-translate-x-1/2 md:-translate-y-1/2"
               style={{
-                width: "300px",
-                height: "300px",
+                width: "250px",
+                height: "250px",
               }}
             >
               <div ref={mapContainer} className="w-full h-full"></div>
@@ -155,16 +155,8 @@ const MainContent: React.FC<MainContentProps> = ({
             variants={basicTestVariants}
             animate="animate"
             className="arrow-icon"
-            onClick={() => {
-              window.scrollTo({
-                top: isMobile ? mainContentSize.height + 250 : mainContentSize.height + 180,
-                behavior: "smooth",
-              });
-            }}
           >
-            <ArrowSvg
-              
-            />  
+            <ArrowSvg />  
           </motion.div>
         </div>
         </div>

@@ -25,6 +25,7 @@ export const MoovingButton: React.FC<MoovingButtonProps> = (props) => {
         style={{
           position: "relative",
           display: "inline-block",
+          width: "100px",
         }}
         className="mooving-buttons"
       >
