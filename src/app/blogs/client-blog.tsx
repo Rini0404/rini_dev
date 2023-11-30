@@ -21,7 +21,7 @@ const Blogs: React.FC<BlogsProps> = ({ data }) => {
           className="w-full"
         >
           <motion.div
-            className="p-4 bg-slate-800 rounded-xl shadow-lg flex flex-col md:flex-row items-center border-b border-slate-700"
+            className="p-4 bg-slate-800 rounded-xl shadow-lg flex flex-col md:flex-row items-center border-b border-slate-700 neon-border"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.02, boxShadow: "0 2px 10px rgba(0, 255, 170, 0.637)" }}

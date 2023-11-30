@@ -91,7 +91,7 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
           key={project.id}
           onClick={() => handleCardClick(project)}
           data-index={index}
-          className={`border ${getBoxClass(index)} bg-slate-800 pulsate-box `}
+          className={`border ${getBoxClass(index)} bg-slate-800 pulsate-box neon-border  `}
           initial={{ opacity: 0, y: -50 }}
           animate={elementIsVisible[index] ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: index * 0.1 }}

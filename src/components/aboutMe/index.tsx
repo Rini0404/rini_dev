@@ -70,14 +70,14 @@ export const AboutMe: React.FC = () => {
               </span>{" "}
               My code doesn't just function; it tells a story of{" "}
               <span className="highlight-role">growth</span>,
-              <span className="highlight-role">dedication</span>, and{" "}
+              <span className="highlight-role"> dedication</span>, and{" "}
               <span className="highlight-role">
                 the relentless pursuit for excellence
               </span>
               .
             </p>
             <p className="text-lg md:text-xl mb-4">
-              Nowadays I love to write about what I've learned, playing Pokemon
+              Nowadays I love to write about what I've learned, play Pokemon
               Go and 3D print stuff!
             </p>
           </div>
