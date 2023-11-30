@@ -1,8 +1,9 @@
-import React from "react";
+'use client';
+import React, { useState, useEffect } from "react";
 import { BlogsArray } from "./blog-types";
 import Blogs from "./client-blog";
 
-const getAllProjects = async () => {
+const getAllBlogs = async () => {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const response = await fetch(`${apiUrl}/api/blogs`);
@@ -12,29 +13,23 @@ const getAllProjects = async () => {
     }
 
     const data = await response.json();
-    console.log('console.log data: ', data);
     return data;
   } catch (error) {
-    console.error('Failed to fetch projects:', error);
+    console.error('Failed to fetch blogs:', error);
+    return []; // Return an empty array or handle the error as needed
   }
 };
 
+export default function BlogsPage() {
+  const [blogs, setBlogs] = useState<BlogsArray>([]);
 
-type BlogsProps = {
-  data: BlogsArray;
-};
-
-const BlogsPage: React.FC<BlogsProps> = async () => {
-  const blogs = await getAllProjects();
-
+  useEffect(() => {
+    getAllBlogs().then(setBlogs);
+  }, []);
 
   return (
     <div>
-      <Blogs
-        data={blogs}
-      />
+      <Blogs data={blogs} />
     </div>
   );
 }
-
-export default BlogsPage

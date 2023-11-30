@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ProjectProps, Project } from "./project-types";
@@ -11,7 +10,6 @@ type ProjectsClientProps = {
   data: ProjectProps;
 };
 
-// Your component definition:
 const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   // This method shows the modal for the hovered element
@@ -76,12 +74,10 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
 
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState<Project | null>(null);
-  const [selectedId, setSelectedId] = useState<number | null>(null);
   // Toggle modal visibility and set the content for the modal
   const handleCardClick = (project: Project) => {
     setModalContent(project);
     setShowModal(true);
-    setSelectedId(project.id);
   };
 
   return (

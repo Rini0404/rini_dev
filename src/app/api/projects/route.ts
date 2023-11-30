@@ -17,8 +17,6 @@ export async function GET(request: Request) {
       };
     }); 
 
-    console.log('projectsWithThumbnail: ', projectsWithThumbnail)
-
     return new Response(JSON.stringify(projectsWithThumbnail), {
       headers: {
         'content-type': 'application/json',
