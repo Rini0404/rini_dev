@@ -45,7 +45,7 @@ const ProjectModal = (
       <div className="modal-content" ref={modalContentRef}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={project.thumbnail}
+          src={project.thumbnail || "/images/placeholder.png"}
           alt={project.name}
           className="project-image"
         />

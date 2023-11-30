@@ -20,25 +20,23 @@ const emoji = ["🏠", "📁", "📝"];
 const variants = {
   open: {
     opacity: 1,
-    visibility: 'visible',
     transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+    display: 'block' // Show the element when it's open
   },
   closed: {
     opacity: 0,
     transition: { staggerChildren: 0.05, staggerDirection: -1 },
     transitionEnd: {
-      visibility: 'hidden',
-    },
+      display: 'none' // Hide the element after the closing animation
+    }
   },
 };
 
-
 export const Navigation = ({ closeWhenClicked, isOpen }: NavigationProps) => (
   <motion.ul
-  variants={variants}
-  initial="closed"
-  animate={isOpen ? "open" : "closed"} // Control the animation based on isOpen
-
+    variants={variants}
+    initial="closed"
+    animate={isOpen ? "open" : "closed"}
   >
     {itemIds.map((i) => (
       <MenuItem
