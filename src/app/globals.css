@@ -370,8 +370,8 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 55px !important;
-  height: 55px !important;
+  width: 50px !important;
+  height: 50px !important;
 }
 
 .icons:hover,
