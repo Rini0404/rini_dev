@@ -61,9 +61,9 @@ const MainContent: React.FC<MainContentProps> = ({
   return (
     <>
       <DotGrid mainContentSize={mainContentSize} />
-      <div ref={mainContentRef} className="container-center">
+      <div ref={mainContentRef} className="mb-15">
         <div
-          className="text-color p-8 text-center space-y-4"
+          className="text-color p-4 text-center space-y-2"
           style={{
             transform: isInView ? "none" : "translateX(-200px)",
             opacity: isInView ? 1 : 0,
@@ -76,7 +76,7 @@ const MainContent: React.FC<MainContentProps> = ({
               src="/rini.png"
               alt="Rini"
               className="rounded-full 
-            border-4 border-color w-20 h-20 mx-auto mb-4
+            border-4 border-color w-20 h-20 mx-auto
             md:w-40 md:h-40"
             />
             <h2 className="text-color text-2xl md:text-4xl font-bold custom-underline">
