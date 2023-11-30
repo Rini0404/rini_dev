@@ -4,7 +4,7 @@ export type Project = {
   id: number;  
   name: string;
   tags: string;
-  thumbnail: string;
+  thumbnail: string | null;
   url: string;
   shortDesc?: string;
   description?: string;

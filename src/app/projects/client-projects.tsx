@@ -109,7 +109,7 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
             style={{ position: "relative", height: "100%", width: "100%" }}
           >
             <Image
-              src={project.thumbnail}
+              src={project.thumbnail || 'default-thumbnail-url'}
               alt={project.name}
               layout="fill"
               objectFit="cover"

@@ -4,14 +4,28 @@ import { BlogsArray } from "../../blogs/blog-types";
 
 // ... other imports ...
 
-export default async function GET_BLOGS(): Promise<NextResponse> {
+export async function GET(request: Request) {
   try {
     const blogs: BlogsArray = await prisma.blogs.findMany();
-    return new NextResponse(JSON.stringify(blogs), {
+    const blogsWithThumbnail: BlogsArray = blogs.map((blog) => {
+      // Adjust this mapping based on the actual structure of ProjectProps
+      return {
+        id: blog.id,
+        title: blog.title,
+        thumbnail: blog.thumbnail,
+        url: blog.url,
+        tags: blog.tags,
+      };
+    });
+
+    console.log('blogsWithThumbnail: ', blogsWithThumbnail)
+
+    return new NextResponse(JSON.stringify(blogsWithThumbnail), {
       headers: {
         'content-type': 'application/json',
       },
     });
+    
   } catch (error: unknown) {
     return new NextResponse(JSON.stringify({ error: (error as Error).message }), {
       headers: {

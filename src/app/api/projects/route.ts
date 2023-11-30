@@ -1,31 +1,39 @@
-import { NextResponse,  NextRequest } from "next/server";
 import prisma from '@/prisma/client';
 import { ProjectProps } from "../../projects/project-types";
-import React from "react";
 
-
-
-export default async function GET_PROJECTS(): Promise<NextResponse> {
-
+export async function GET(request: Request) {
   try {
-
     const projects = await prisma.project.findMany();
-    const projectsWithThumbnail = projects.map((project) => ({
-      ...project,
-    })) as unknown as ProjectProps[];
+    const projectsWithThumbnail: ProjectProps = projects.map((project) => {
+      // Adjust this mapping based on the actual structure of ProjectProps
+      return {
+        id: project.id,
+        name: project.name,
+        thumbnail: project.thumbnail,
+        url: project.url,
+        tags: project.tags,
+        description: project.description,
+        shortDesc: project.shortDesc,
+      };
+    }); 
 
-    return new NextResponse(JSON.stringify(projectsWithThumbnail), {
+    console.log('projectsWithThumbnail: ', projectsWithThumbnail)
+
+    return new Response(JSON.stringify(projectsWithThumbnail), {
       headers: {
         'content-type': 'application/json',
       },
     });
+
 
   } catch (error: unknown) {
-    return new NextResponse(JSON.stringify({ error: (error as Error).message }), {
+    
+    console.log(error)
+    return new Response(JSON.stringify({ error: (error as Error).message }), {
       headers: {
         'content-type': 'application/json',
       },
     });
+    
   }
-
 }
