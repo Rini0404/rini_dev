@@ -30,6 +30,7 @@ const useMapboxMap = (
           center: options.targetCenter,
           zoom: options.targetZoom,
           essential: true,
+          speed: 0.7,
         });
       });
     }

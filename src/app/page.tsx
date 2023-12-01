@@ -15,9 +15,11 @@ const Home: React.FC = () => {
       "pk.eyJ1IjoicmluaTA0MDQiLCJhIjoiY2xtNTdvMDkxMnJxbjNjbW5reTM4N3d0eiJ9.KKdcGsnFDNd6Vx1uErTgPg",
     style: "mapbox://styles/mapbox/dark-v10",
     initialCenter: [-95, 40],
-    initialZoom: 3,
-    targetCenter: [-81.3792, 28.5383],
-    targetZoom: 10,
+    initialZoom: 1,
+    targetCenter: [-81.2, 28.4383],
+    targetZoom: 8,
+    // zoom speed
+    speed: 0.5,
   });
   const variants = {
     visible: { opacity: 1, translateY: 0 },

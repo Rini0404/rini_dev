@@ -46,7 +46,8 @@ export const Navbar = () => {
     >
       <motion.nav
         style={{
-          zIndex: isOpen ? 10 : 0, // Adjust zIndex based on isOpen
+          zIndex: 1, // Adjust zIndex based on isOpen
+          height: 0, // Adjust height based on isOpen
         }}
         initial={false}
         animate={isOpen ? "open" : "closed"}
@@ -57,7 +58,7 @@ export const Navbar = () => {
           className="background"
           variants={sidebar}
           style={{
-            height: isInView ? "100vh" : "0%",
+            height: "100vh",
           }}
         />{" "}
         <Navigation closeWhenClicked={() => toggleOpen()} isOpen={isOpen} />
