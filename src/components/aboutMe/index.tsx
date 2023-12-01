@@ -10,7 +10,7 @@ export const AboutMe: React.FC = () => {
 
   // useEffect to set the isMobile state after the component mounts
   useEffect(() => {
-    setIsMobile(window.innerWidth <= 768);
+    setIsMobile(window.innerWidth <= 500);
   }, []);
 
 
@@ -54,7 +54,7 @@ export const AboutMe: React.FC = () => {
               About Me <span className="wave">👋🏾</span>
             </h1>
             {/* Shortened about me paragraphs */}
-            <p className="text-md sm:text-lg md:text-xl mb-4">
+            <p className="text-sm sm:text-lg md:text-xl mb-4">
               <span className="highlight-role">
                 From construction sites to coding bytes
               </span>
@@ -62,7 +62,7 @@ export const AboutMe: React.FC = () => {
               resilient years in construction, I switched gears, fueled by a
               passion for technology and innovation.
             </p>
-            <p className="text-lg md:text-xl mb-4">
+            <p className="text-sm md:text-xl mb-4">
               Now at a fast-paced startup, I wear multiple hats –{" "}
               <span className="highlight-role">
                 I'm deploying apps, leading sprints, nurturing features, and
@@ -76,8 +76,8 @@ export const AboutMe: React.FC = () => {
               </span>
               .
             </p>
-            <p className="text-lg md:text-xl mb-4">
-              Nowadays I love to write about what I've learned, play Pokemon
+            <p className="text-sm md:text-xl mb-4">
+              Nowadays, I love to write about what I've learned, play Pokemon
               Go and 3D print stuff!
             </p>
           </div>
@@ -89,13 +89,13 @@ export const AboutMe: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             variants={leftVariant}
             transition={{ delay: 0.5 }}
-            className="w-full sm:w-1/2 flex justify-center items-center"
+            className="sm:w-1/2 flex justify-center items-center pb-4"
             >
               <img
                 src="/ice.jpg"
                 alt="Rini"
-                className={`rounded-full border-4 ${imageIsForMobile}`}
-                style={{ borderColor: "rgba(0, 255, 170, 0.637)" }}
+                className={`rounded-full border-4 w-40 h-50 md:w-72 md:h-80 `}
+                style={{ borderColor: "rgba(0, 255, 170, 0.637)"}}
               />
             </motion.div>
         </motion.div>

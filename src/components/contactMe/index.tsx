@@ -18,16 +18,15 @@ const ContactMe: React.FC<ContactMeProps> = ({ isMobile }) => {
           <span className="point">👉🏽</span>
         )}
       </h2>
-      <div className="flex flex-wrap items-center">
-        {/* Replace these with actual icons and links */}
-        <a href="mailto:reneortega2468@gmail.com" className="mr-4">
+      <div className="flex flex-nowrap">
+        <a href="mailto:reneortega2468@gmail.com" className="mr-2 sm:mr-4">
           reneortega2468@gmail.com
         </a>
         <a
           href="https://github.com/rini0404"
           target="_blank"
           rel="noopener noreferrer"
-          className="mr-4"
+          className="mr-2 sm:mr-4"
         >
           <GithubSvg />
         </a>
@@ -35,7 +34,7 @@ const ContactMe: React.FC<ContactMeProps> = ({ isMobile }) => {
           href="https://www.linkedin.com/in/rene-ortega-a29564196/"
           target="_blank"
           rel="noopener noreferrer"
-          className="mr-4"
+          className="mr-2 sm:mr-4"
         >
           <LinkedIn />
         </a>

@@ -49,28 +49,19 @@ const MainContent: React.FC<MainContentProps> = ({
     },
   };
 
-  // useState to hold the isMobile state
-  const [isMobile, setIsMobile] = useState(false);
-
-  // useEffect to set the isMobile state after the component mounts
-  useEffect(() => {
-    setIsMobile(window.innerWidth <= 768);
-  }, []);
-
-
   return (
     <>
       <DotGrid mainContentSize={mainContentSize} />
-      <div ref={mainContentRef} className="mb-15">
+      <div ref={mainContentRef} className=" mb-36 md:mb-10 ">
         <div
-          className="text-color p-4 text-center space-y-2"
+          className="text-color p-4 text-center space-y-4"
           style={{
             transform: isInView ? "none" : "translateX(-200px)",
             opacity: isInView ? 1 : 0,
             transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
           }}
         >
-          <div style={{ fontSize: "3.75rem" /* 60px equivalent */ }}>
+          <div style={{ fontSize: "3.75rem"  }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/rini.png"
@@ -86,7 +77,7 @@ const MainContent: React.FC<MainContentProps> = ({
               <span className="wave">✌🏾</span>
             </h1>
           </div>
-          <p className="text-md md:text-xlg mb-4">
+          <p className="text-md md:text-xlg">
             I am a{" "}
             <span className="highlight-role">
               Full Stack Web and Mobile Developer
