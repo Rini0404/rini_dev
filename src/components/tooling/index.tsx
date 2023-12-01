@@ -44,7 +44,7 @@ export const Tooling: React.FC = () => {
             <div className="icons">
               <SvgImage SvgComponent={item.SvgComponent} />
             </div>
-            <span className="text-white text-xs mt-1">{item.name}</span>
+            <span className="text-white text-xs ">{item.name}</span>
           </div>
         ))}
       </div>
