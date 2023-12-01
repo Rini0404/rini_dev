@@ -99,7 +99,10 @@ const Home: React.FC = () => {
       </motion.div>
       <motion.div
         ref={refTooling}
-        className="flex items-center justify-center min-h-screen"
+        className="flex items-center justify-center"
+        style={{
+          height: "50vh"
+        }}
         initial="hidden"
         animate={animateTooling ? "visible" : "hidden"}
         variants={variants}
@@ -110,7 +113,7 @@ const Home: React.FC = () => {
       <motion.div
         ref={refAboutMe}
         viewport={{ once: false, amount: 0.8 }}
-        className="flex items-center justify-center min-h-screen"
+        className="flex items-center justify-center py-40 "
         initial="hidden"
         animate={animateAboutMe ? "visible" : "hidden"}
         variants={variants}
