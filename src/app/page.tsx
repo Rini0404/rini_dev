@@ -18,8 +18,6 @@ const Home: React.FC = () => {
     initialZoom: 1,
     targetCenter: [-81.2, 28.4383],
     targetZoom: 8,
-    // zoom speed
-    speed: 0.5,
   });
   const variants = {
     visible: { opacity: 1, translateY: 0 },
