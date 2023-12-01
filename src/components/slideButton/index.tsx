@@ -114,7 +114,7 @@ export const Slider: React.FC<SliderProps> = ({ link }) => {
             strokeWidth="2"
             stroke={color}
             d="M 0, 20 a 20, 20 0 1,0 40,0 a 20, 20 0 1,0 -40,0"
-            style={{ translateX: 5, translateY: 5 }}
+            style={{ translateX: 5, translateY: 6 }}
           />
           <motion.path
             fill="none"
