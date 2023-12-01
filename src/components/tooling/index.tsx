@@ -32,29 +32,22 @@ const svgComponents = [
   { SvgComponent: Mysql, name: "Mysql" },
 ];
 
-type ToolingProps = {
-  didReset: boolean;
-};
-
-export const Tooling: React.FC<ToolingProps> = ({ didReset }) => {
+export const Tooling: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-10/12 sm:w-2/3 md:w-1/2 h-full rounded-lg shadow-lg tooling-border">
+    <div className="flex flex-col items-center justify-center w-full sm:w-2/4 md:w-2/3 lg:w-1/2 h-full rounded-lg shadow-lg tooling-border">
       <div className="text-color text-xl sm:text-2xl md:text-3xl font-bold mb-2 md:mb-4">
         <h2 className="text-center pt-3">Tools I use!</h2>
       </div>
-      <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mx-auto">
+      <div className="flex flex-wrap justify-center gap-4 mx-auto">
         {svgComponents.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center justify-center pb-5"
-          >
+          <div key={index} className="flex flex-col items-center justify-center pb-5 w-1/5">
             <div className="icons">
               <SvgImage SvgComponent={item.SvgComponent} />
             </div>
             <span className="text-white text-xs mt-1">{item.name}</span>
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 };

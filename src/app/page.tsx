@@ -100,9 +100,6 @@ const Home: React.FC = () => {
       <motion.div
         ref={refTooling}
         className="flex items-center justify-center"
-        style={{
-          height: "50vh"
-        }}
         initial="hidden"
         animate={animateTooling ? "visible" : "hidden"}
         variants={variants}

@@ -597,3 +597,18 @@ li {
 .inline-typewriter {
   align-items: center;
 }
+
+
+@media screen and (min-width: 640px) { /* sm breakpoint */
+  .grid-cols-3 > div:nth-last-child(-n+3):nth-child(1n) {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 768px) { /* md breakpoint */
+  .grid-cols-4 > div:nth-last-child(-n+4):nth-child(1n) {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

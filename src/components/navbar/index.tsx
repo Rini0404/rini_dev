@@ -31,7 +31,7 @@ export const Navbar = () => {
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
   const navRef = useRef(null);
-  const isInView = useInView(navRef, { once: false });
+  const isInView = useInView(navRef, { once: true });
 
   return (
     <div
