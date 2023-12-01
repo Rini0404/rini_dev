@@ -14,8 +14,13 @@ export async function GET(request: Request) {
         tags: project.tags,
         description: project.description,
         shortDesc: project.shortDesc,
+        exampleLink: project.exampleLink || '',
+        appLink: project.appLink || '',
+        serverLink: project.serverLink || '',
       };
-    }); 
+    });   
+
+    console.log('projectsWithThumbnail: ', projectsWithThumbnail)
 
     return new Response(JSON.stringify(projectsWithThumbnail), {
       headers: {

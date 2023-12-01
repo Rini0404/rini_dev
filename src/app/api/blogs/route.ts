@@ -18,8 +18,6 @@ export async function GET(request: Request) {
       };
     });
 
-    console.log('blogsWithThumbnail: ', blogsWithThumbnail)
-
     return new NextResponse(JSON.stringify(blogsWithThumbnail), {
       headers: {
         'content-type': 'application/json',

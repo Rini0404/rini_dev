@@ -9,6 +9,9 @@ export type Project = {
   shortDesc?: string;
   description?: string;
   layoutId?: number;
+  exampleLink? : string;
+  appLink?: string;
+  serverLink?: string;
 } 
 
 export type ProjectProps = Project[];

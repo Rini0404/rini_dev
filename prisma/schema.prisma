@@ -27,4 +27,7 @@ model Project {
   tags        String   @db.VarChar(500)
   description String   @db.Text
   shortDesc   String   @db.VarChar(500)
+  exampleLink String?  @db.Text
+  serverLink  String?  @db.Text
+  appLink     String?  @db.Text
 }
