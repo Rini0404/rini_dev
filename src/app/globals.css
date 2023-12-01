@@ -353,7 +353,7 @@ li {
 }
 
 .neon-border {
-  border: 2px solid rgba(0, 255, 170, 0.637);
+  border: 2px solid rgba(0, 255, 170, 0.437);
 }
 
 .icons {
@@ -609,5 +609,13 @@ li {
   .grid-cols-4 > div:nth-last-child(-n+4):nth-child(1n) {
     margin-right: auto;
     margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    background-color: rgba(0, 0, 0, 0.9); /* Darker semi-transparent background */
+    /* Ensure it's always visible on mobile */
+    display: block;
   }
 }

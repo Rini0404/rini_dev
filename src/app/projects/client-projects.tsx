@@ -10,6 +10,10 @@ type ProjectsClientProps = {
   data: ProjectProps;
 };
 
+const isMobileDevice = () => {
+  return /Mobi|Android/i.test(navigator.userAgent);
+}
+
 const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   // This method shows the modal for the hovered element
@@ -80,6 +84,9 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
     setShowModal(true);
   };
 
+  const isMobile = isMobileDevice();
+
+
   return (
     <div
       className="projects-container"
@@ -96,8 +103,8 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
           animate={elementIsVisible[index] ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: index * 0.1 }}
           style={getBoxStyle(index)}
-          onMouseEnter={() => handleMouseEnter(index)}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={!isMobile ? () => handleMouseEnter(index) : undefined}
+          onMouseLeave={!isMobile ? handleMouseLeave : undefined}
           layoutId={`project-container-${project.id}`}
         >
           <div
@@ -111,7 +118,7 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
               objectFit="cover"
               quality={50}
             />
-            {hoverIndex === index && (
+            {(hoverIndex === index || isMobile) && (
               <div
                 className="modal-content bg-slate-800"
                 style={{

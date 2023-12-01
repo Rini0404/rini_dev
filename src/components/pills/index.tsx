@@ -11,7 +11,7 @@ const TagsPills: React.FC<TagsPillsProps> = ({ tags, className }) => {
       {tags.map((tag, index) => (
         <span
           key={index}
-          className="px-2 py-1 mr-2 mt-2 text-color rounded-full text-sm bg-teal-400/10"
+          className="px-2 py-1 mr-2 mt-2 text-color rounded-full text-sm bg-teal-400/10 neon-border"
         >
           {tag.trim()}
         </span>

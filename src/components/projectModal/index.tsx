@@ -1,7 +1,8 @@
 import React from "react";
 import { Project } from "@/src/app/projects/project-types";
 import TagsPills from "../pills";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { Slider } from "../slideButton";
 
 interface ProjectModalProps {
   project: Project;
@@ -15,31 +16,22 @@ const ProjectModal = (
 ) => {
   const modalContentRef = React.useRef<HTMLDivElement>(null);
 
-  // Handle outside click
-  const handleClickOutside = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    if (
-      modalContentRef.current &&
-      !modalContentRef.current.contains(event.target as Node)
-    ) {
-      onClose();
-    }
-  };
-
   return (
     <motion.div
       layoutId={layoutId}
       className="modal-overlay-big"
-      onClick={handleClickOutside}
+      // onClick={handleClickOutside}
       ref={ref as React.RefObject<HTMLDivElement>}
       initial={{ x: 300, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: -300, opacity: 0 }} // This is your exit animation
     >
-      <button className="close-button bg-teal-400/10 pulsate-box" onClick={onClose}>
-      <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} >
-        X
+      <button
+        className="close-button bg-teal-400/10 pulsate-box"
+        onClick={onClose}
+      >
+        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+          X
         </motion.div>
       </button>
       <div className="modal-content" ref={modalContentRef}>
@@ -52,9 +44,16 @@ const ProjectModal = (
       </div>
 
       <div className="details-container">
-        <h2 className="text-color">{project.name}</h2>
+        <h2 className="text-color text-2xl">{project.name}</h2>
         <p className="text-color project-description">{project.description}</p>
         <TagsPills tags={project.tags.split(",")} />
+        {project.id === 3 && (
+          <div className="slider-container">
+            <Slider
+              link="https://www.fishkillfarms.com/map/"
+            />
+          </div>
+        )}
       </div>
     </motion.div>
   );

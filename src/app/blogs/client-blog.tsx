@@ -51,7 +51,7 @@ const Blogs: React.FC<BlogsProps> = ({ data }) => {
               {/* Tags Pills */}
               <div className="mt-2 flex flex-wrap">
                 {blog.tags.split(",").filter(tag => tag.trim() !== "").map((tag, index) => (
-                  <span key={index} className="px-2 py-1 mr-2 mt-2 text-color rounded-full text-sm bg-teal-400/10">
+                  <span key={index} className="px-2 py-1 mr-2 mt-2 text-color rounded-full text-sm bg-teal-400/10 neon-border">
                     {tag.trim()}
                   </span>
                 ))}
