@@ -21,7 +21,7 @@ export const Slider: React.FC<SliderProps> = ({ link }) => {
 
   React.useEffect(() => {
     const unsubscribeX = x.onChange((currentX) => {
-      if (currentX > 300 && !linkOpened) {
+      if (currentX > 280 && !linkOpened) {
         setLinkOpened(true);
         window.open(link, "_blank");
       }
@@ -45,10 +45,10 @@ export const Slider: React.FC<SliderProps> = ({ link }) => {
   const [currentX, setCurrentX] = React.useState(0);
 
   // Function to calculate opacity based on the slider's position
-  const calculateOpacity = (index: number) => {
-    const fadeStart = 50 + index * 15; // Start fading when the slider is 50px + 15px per letter index away
+  const calculateOpacity = React.useCallback((index: number) => {
+    const fadeStart = 50 + index * 15;
     return currentX > fadeStart ? Math.max(2 - (currentX - fadeStart) / 20, 0) : 1;
-  };
+  }, [currentX]);
 
   React.useEffect(() => {
     const unsubscribeX = x.onChange(latestX => {
@@ -60,6 +60,12 @@ export const Slider: React.FC<SliderProps> = ({ link }) => {
       x.stop();
     };
   }, [x]);
+
+  const letterStyles = React.useMemo(() => text.map((_, index) => ({
+    opacity: calculateOpacity(index),
+    display: "inline-block",
+    marginRight: "4px",
+  })), [text, calculateOpacity]);
 
   return (
     <motion.div
@@ -77,7 +83,7 @@ export const Slider: React.FC<SliderProps> = ({ link }) => {
         style={{
           position: "absolute",
           top: "50%",
-          left: "40%",
+          left: "38%",
           transform: "translateY(-50%)",
           zIndex: 1,
         }}
@@ -86,14 +92,7 @@ export const Slider: React.FC<SliderProps> = ({ link }) => {
         "
       >
         {text.map((letter, index) => (
-          <span
-            key={index}
-            style={{
-              opacity: calculateOpacity(index),
-              display: "inline-block",
-              marginRight: "4px", // Adjust spacing between letters
-            }}
-          >
+          <span key={index} style={letterStyles[index]}>
             {letter}
           </span>
         ))}
