@@ -105,7 +105,7 @@ const Home: React.FC = () => {
         variants={variants}
         transition={{ duration: 0.8 }}
       >
-        <Tooling didReset={animateTooling} />
+        <Tooling />
       </motion.div>
       <motion.div
         ref={refAboutMe}
