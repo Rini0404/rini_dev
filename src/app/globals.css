@@ -371,7 +371,7 @@ li {
   align-items: center;
   justify-content: center;
   width: 50px !important;
-  height: 50px !important;
+  /* height: 50px !important; */
 }
 
 .icons:hover,
@@ -398,7 +398,7 @@ li {
 @media (min-width: 640px) {
   .icons {
     width: 75px !important;
-    height: 75px !important;
+    /* height: 75px !important; */
   }
 }
 
