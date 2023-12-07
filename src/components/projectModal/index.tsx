@@ -47,10 +47,10 @@ const ProjectModal = (
         <h2 className="text-color text-2xl">{project.name}</h2>
         <p className="text-color project-description">{project.description}</p>
         <TagsPills tags={project.tags.split(",")} />
-        {project.id === 3 && (
+        {project.id === 3 || project.id === 6 && (
           <div className="slider-container">
             <Slider
-              link="https://www.fishkillfarms.com/map/"
+              link= { project.url }
             />
           </div>
         )}
