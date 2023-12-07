@@ -12,19 +12,9 @@ type ProjectsClientProps = {
 
 const isMobileDevice = () => {
   return /Mobi|Android/i.test(navigator.userAgent);
-}
+};
 
 const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
-  // This method shows the modal for the hovered element
-  const handleMouseEnter = (index: number) => {
-    setHoverIndex(index);
-  };
-
-  // This method hides the modal when not hovered
-  const handleMouseLeave = () => {
-    setHoverIndex(null);
-  };
 
   const [elementIsVisible, setElementIsVisible] = useState<{
     [key: string]: boolean;
@@ -86,6 +76,20 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
 
   const isMobile = isMobileDevice();
 
+  const returnImgById = (id: number) => {
+    switch (id) {
+      case 3:
+        return "/fish.png";
+      case 6:
+        return "/pcarch.png";
+      case 5:
+        return "/tfhand.png";
+      case 4:
+        return "/nkr.png";
+      default:
+        return "/1.png";
+    }
+  };
 
   return (
     <div
@@ -98,61 +102,71 @@ const ProjectsClient: React.FC<ProjectsClientProps> = ({ data }) => {
           key={project.id}
           onClick={() => handleCardClick(project)}
           data-index={index}
-          className={`border ${getBoxClass(index)} bg-slate-800 pulsate-box neon-border  `}
+          className={`border ${getBoxClass(
+            index
+          )} bg-slate-800 pulsate-box neon-border  `}
           initial={{ opacity: 0, y: -50 }}
           animate={elementIsVisible[index] ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: index * 0.1 }}
           style={getBoxStyle(index)}
-          onMouseEnter={!isMobile ? () => handleMouseEnter(index) : undefined}
-          onMouseLeave={!isMobile ? handleMouseLeave : undefined}
           layoutId={`project-container-${project.id}`}
         >
           <div
             className="flex"
-            style={{ position: "relative", height: "100%", width: "100%" }}
+            style={{
+              position: "relative",
+              height: "100%",
+              width: "100%",
+              backgroundColor: "transparent",
+              display: "flex",
+              flexDirection: "column", // Stack children vertically
+              justifyContent: "flex-start", // Align children to the start of the container
+            }}
           >
             <Image
-              src={project.thumbnail || 'default-thumbnail-url'}
+              src={returnImgById(project.id) || "default-thumbnail-url"}
               alt={project.name}
               layout="fill"
-              objectFit="cover"
               quality={50}
+              style={{
+                width: "100%", // Take up all available horizontal space
+                maxHeight: "50%", // Limit image height to top third of the container
+                alignSelf: "center", // Center the image within the top third
+              }}
             />
-            {(hoverIndex === index || isMobile) && (
+            <div
+              className="modal-content bg-slate-800"
+              style={{
+                width: "100%",
+                position: "absolute",
+                height: "auto",
+                bottom: "0",
+                color: "#f1f1f1",
+              }}
+            >
+              {/* Content of your modal */}
+
               <div
-                className="modal-content bg-slate-800"
+                className="flex flex-col h-full"
                 style={{
-                  width: "100%",
-                  position: "absolute",
-                  height: "auto",
-                  bottom: "0",
-                  color: "#f1f1f1",
+                  // place both a the bottom of the modal
+                  justifyContent: "flex-end",
+                  // center the text
+                  alignItems: "left",
                 }}
               >
-                {/* Content of your modal */}
+                <TagsPills
+                  tags={project.tags.split(",")}
+                  className="flex flex-wrap p-3"
+                />
 
-                <div
-                  className="flex flex-col h-full"
-                  style={{
-                    // place both a the bottom of the modal
-                    justifyContent: "flex-end",
-                    // center the text
-                    alignItems: "left",
-                  }}
-                >
-                  <TagsPills
-                    tags={project.tags.split(",")}
-                    className="flex flex-wrap p-3"
-                  />
+                <div className="text-color flex flex-col gap-4 p-4">
+                  <p>{project.name}</p>
 
-                  <div className="text-color flex flex-col gap-4 p-4">
-                    <p>{project.name}</p>
-
-                    <p>{project.shortDesc}</p>
-                  </div>
+                  <p>{project.shortDesc}</p>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </motion.div>
       ))}

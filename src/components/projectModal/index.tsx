@@ -16,6 +16,33 @@ const ProjectModal = (
 ) => {
   const modalContentRef = React.useRef<HTMLDivElement>(null);
 
+  const returnImgById = (id: number) => {
+    switch (id) {
+      case 3:
+        return "/fish.png";
+      case 6:
+        return "/pcarch.png";
+      case 5:
+        return "/tfhand.png";
+      case 4:
+        return "/nkr.png";
+      default:
+        return "/1.png";
+    }
+  };
+
+
+  const useSliderIf = (id: number) => {
+    switch (id) {
+      case 3:
+        return true;
+      case 6:
+        return true;
+      default:
+        return false;
+    }
+  }
+
   return (
     <motion.div
       layoutId={layoutId}
@@ -37,7 +64,7 @@ const ProjectModal = (
       <div className="modal-content" ref={modalContentRef}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={project.thumbnail || "/images/placeholder.png"}
+          src={ returnImgById(project.id) || "/images/placeholder.png"}
           alt={project.name}
           className="project-image"
         />
@@ -47,7 +74,7 @@ const ProjectModal = (
         <h2 className="text-color text-2xl">{project.name}</h2>
         <p className="text-color project-description">{project.description}</p>
         <TagsPills tags={project.tags.split(",")} />
-        {project.id === 3 || project.id === 6 && (
+        {useSliderIf(project.id) && (
           <div className="slider-container">
             <Slider
               link= { project.url }

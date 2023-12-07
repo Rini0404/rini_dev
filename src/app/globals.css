@@ -614,8 +614,7 @@ li {
 
 @media screen and (max-width: 768px) {
   .modal-content {
-    background-color: rgba(0, 0, 0, 0.9); /* Darker semi-transparent background */
-    /* Ensure it's always visible on mobile */
+    background-color: transparent;
     display: block;
   }
 }
