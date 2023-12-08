@@ -83,8 +83,8 @@ const ProjectModal = (
       </div>
 
       <div className="details-container">
-      <div className="title-button-container space-x-10">
-        <h2 className="text-color text-2xl">{project.name}</h2>
+      <div className="title-button-container pt-10 md:space-x-6 sm:space-x-6">
+        <h2 className="text-color text-2xl py-2">{project.name}</h2>
         {
           dontShowSourceCode(project.id) ? null : <GithubButton url={project.appLink || "https://github.com/Rini0404" } />
         }

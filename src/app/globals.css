@@ -298,7 +298,6 @@ li {
 }
 
 .project-description {
-  overflow: auto;
   font-size: 1rem; /* Adjusted for responsiveness */
   width: 95%;
 }
@@ -522,7 +521,7 @@ li {
     transform: translateX(0); 
   }
   50% { 
-    transform: translateX(100px); /* Adjust movement distance as needed */
+    transform: translateX(20px); /* Adjust movement distance as needed */
   }
 }
 
@@ -625,7 +624,6 @@ li {
   border-radius: 30px;
   width: 150px;
   height: 40px;
-  text-align: center;
   justify-content: center;
   flex-direction: row;
   /* pointer */
@@ -636,4 +634,13 @@ li {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  flex-direction: row; /* Default is row */
 }
+
+@media screen and (max-width: 767px) {
+  .title-button-container {
+    flex-direction: column; /* Stack items vertically on mobile */
+    align-items: flex-start; /* Align items to the start (left) */
+  }
+}
+
