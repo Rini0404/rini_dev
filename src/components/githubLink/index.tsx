@@ -7,13 +7,18 @@ type ButtonProps = {
 
 export const GithubButton: React.FC<ButtonProps> = ({ url }) => {
   return (
-    <motion.div 
-      whileHover={{ scale: 1.2 }} 
-      whileTap={{ scale: 0.8 }} 
-      className="git-button neon-border text-color"
-      style={{ display: 'flex', alignItems: 'center' }}
+    <a 
+      href={url} 
+      target="_blank" 
+      rel="noreferrer" 
+      style={{ textDecoration: 'none' }}
     >
-      <a href={url} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+      <motion.div 
+        whileHover={{ scale: 1.2 }} 
+        whileTap={{ scale: 0.8 }} 
+        className="git-button neon-border text-color"
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
+      >
         {/* Icon container */}
         {/*eslint-disable-next-line @next/next/no-img-element */}
         <img 
@@ -23,7 +28,7 @@ export const GithubButton: React.FC<ButtonProps> = ({ url }) => {
         />
         {/* Text container */}
         <span>Source Code</span>
-      </a>
-    </motion.div>
+      </motion.div>
+    </a>
   );
 };
