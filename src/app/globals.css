@@ -300,6 +300,7 @@ li {
 .project-description {
   overflow: auto;
   font-size: 1rem; /* Adjusted for responsiveness */
+  width: 95%;
 }
 
 /* Media Queries */
@@ -617,4 +618,22 @@ li {
     background-color: transparent;
     display: block;
   }
+}
+
+
+.git-button {
+  border-radius: 30px;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  justify-content: center;
+  flex-direction: row;
+  /* pointer */
+  cursor: pointer;
+}
+
+.title-button-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }

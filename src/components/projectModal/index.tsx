@@ -1,8 +1,9 @@
 import React from "react";
 import { Project } from "@/src/app/projects/project-types";
 import TagsPills from "../pills";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Slider } from "../slideButton";
+import { GithubButton } from "../githubLink";
 
 interface ProjectModalProps {
   project: Project;
@@ -43,6 +44,17 @@ const ProjectModal = (
     }
   }
 
+  const dontShowSourceCode = (id: number) => {
+    switch (id) {
+      case 3:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  console.log("PROJECT: ", project)
+
   return (
     <motion.div
       layoutId={layoutId}
@@ -71,9 +83,17 @@ const ProjectModal = (
       </div>
 
       <div className="details-container">
+      <div className="title-button-container space-x-10">
         <h2 className="text-color text-2xl">{project.name}</h2>
+        {
+          dontShowSourceCode(project.id) ? null : <GithubButton url={project.appLink || "https://github.com/Rini0404" } />
+        }
+      </div>
+
         <p className="text-color project-description">{project.description}</p>
+        
         <TagsPills tags={project.tags.split(",")} />
+
         {useSliderIf(project.id) && (
           <div className="slider-container">
             <Slider
